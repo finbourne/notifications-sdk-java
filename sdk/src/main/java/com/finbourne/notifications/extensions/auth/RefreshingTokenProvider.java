@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 /**
 * Provides {@link FinbourneToken} used for API authentication and manages
-* token expiry to ensure continued connectivity to lusidNotifications API without the need
+* token expiry to ensure continued connectivity to notifications API without the need
 * for explicit reauthentication by the caller.
 *
 */
@@ -23,9 +23,9 @@ public class RefreshingTokenProvider {
 
     /**
     * Creates a KeepAuthTokenProvider based on an underlying token provider
-    * that manages direct authentication with lusidNotifications.
+    * that manages direct authentication with notifications.
     *
-    * @param httpFinbourneTokenProvider underlying provider that manages explicit authentication calls to lusidNotifications
+    * @param httpFinbourneTokenProvider underlying provider that manages explicit authentication calls to notifications
     */
     public RefreshingTokenProvider(HttpFinbourneTokenProvider httpFinbourneTokenProvider) {
         this.httpFinbourneTokenProvider = httpFinbourneTokenProvider;

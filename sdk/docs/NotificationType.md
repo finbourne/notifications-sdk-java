@@ -34,6 +34,7 @@ Holds information about a Finbourne.Notifications.WebApi.Dtos.Notifications.Noti
 | Name | Value |
 |---- | -----|
 | AMAZONSQS | &quot;AmazonSqs&quot; |
+| AMAZONSQSPRINCIPALAUTH | &quot;AmazonSqsPrincipalAuth&quot; |
 | EMAIL | &quot;Email&quot; |
 | SMS | &quot;Sms&quot; |
 | WEBHOOK | &quot;Webhook&quot; |

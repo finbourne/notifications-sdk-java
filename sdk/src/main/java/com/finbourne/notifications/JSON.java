@@ -95,6 +95,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ActionId.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsNotificationType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsNotificationTypeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsPrincipalAuthNotificationType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsPrincipalAuthNotificationTypeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.Attempt.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AttemptStatus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.CreateNotificationRequest.CustomTypeAdapterFactory());

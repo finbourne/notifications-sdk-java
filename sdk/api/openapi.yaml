@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.904
+  version: 0.1.913
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -174,6 +174,10 @@ paths:
                   bodySchema:
                   - name: scope
                     type: String
+                  - name: lusidInstrumentId
+                    type: String
+                  - name: identifiers
+                    type: CollectionOfIdentifiers
                   href: Test:firstString
                 href: Test:hrefUriString
                 nextPage: nextString
@@ -250,6 +254,10 @@ paths:
                 bodySchema:
                 - name: scope
                   type: String
+                - name: lusidInstrumentId
+                  type: String
+                - name: identifiers
+                  type: CollectionOfIdentifiers
                 href: Test:firstString
               schema:
                 $ref: '#/components/schemas/EventTypeSchema'
@@ -1025,6 +1033,15 @@ paths:
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create AWS SQS Notification with Principal Authentication:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
           application/json:
@@ -1083,6 +1100,15 @@ paths:
                     Body: "Event with message {{body.message}}"
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create AWS SQS Notification with Principal Authentication:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
@@ -1143,6 +1169,15 @@ paths:
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create AWS SQS Notification with Principal Authentication:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
           application/*+json:
@@ -1201,6 +1236,15 @@ paths:
                     Body: "Event with message {{body.message}}"
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create AWS SQS Notification with Principal Authentication:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
@@ -1297,6 +1341,20 @@ paths:
                       body: "Event with message {{body.message}}"
                       apiKeyRef: config://shared/official/system-a-config/apiKey
                       apiSecretRef: config://shared/official/system-a-config/apiSecretRef
+                      queueUrlRef: config://shared/official/system-a-config/queueUrl
+                    createdAt: 2020-06-15T12:00:00.0000000+00:00
+                    userIdCreated: Example user
+                    modifiedAt: 2020-06-20T12:00:00.0000000+00:00
+                    userIdModified: Example user
+                    href: http://fbn-test/api/subscriptions/testScope/testCode/notifications/ExampleId
+                AWS SQS Principal Authentication Notification:
+                  value:
+                    notificationId: ExampleId
+                    displayName: Example name
+                    description: Example description
+                    notificationType:
+                      type: AmazonSqsPrincipalAuth
+                      body: "Event with message {{body.message}}"
                       queueUrlRef: config://shared/official/system-a-config/queueUrl
                     createdAt: 2020-06-15T12:00:00.0000000+00:00
                     userIdCreated: Example user
@@ -1431,10 +1489,8 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqs
+                  type: AmazonSqsPrincipalAuth
                   body: "Event with message {{body.message}}"
-                  apiKeyRef: config://shared/official/system-a-config/apiKey
-                  apiSecretRef: config://shared/official/system-a-config/apiSecretRef
                   queueUrlRef: config://shared/official/system-a-config/queueUrl
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
@@ -1560,6 +1616,14 @@ paths:
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update AWS SQS Notification with Principal Authentication:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
           application/json:
@@ -1614,6 +1678,14 @@ paths:
                     Body: "Event with message {{body.message}}"
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update AWS SQS Notification with Principal Authentication:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
@@ -1670,6 +1742,14 @@ paths:
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update AWS SQS Notification with Principal Authentication:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
           application/*+json:
@@ -1725,6 +1805,14 @@ paths:
                     ApiKeyRef: config://shared/official/system-a-config/apiKey
                     ApiSecretRef: config://shared/official/system-a-config/apiSecret
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update AWS SQS Notification with Principal Authentication:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AmazonSqsPrincipalAuth
+                    Body: "Event with message {{body.message}}"
+                    QueueUrlRef: config://shared/official/system-a-config/queueUrl
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
         description: The data to update a notification
@@ -1738,10 +1826,8 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqs
+                  type: AmazonSqsPrincipalAuth
                   body: "Event with message {{body.message}}"
-                  apiKeyRef: config://shared/official/system-a-config/apiKey
-                  apiSecretRef: config://shared/official/system-a-config/apiSecretRef
                   queueUrlRef: config://shared/official/system-a-config/queueUrl
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
@@ -2018,6 +2104,7 @@ components:
           description: The type of delivery mechanism for this notification
           enum:
           - AmazonSqs
+          - AmazonSqsPrincipalAuth
           - Email
           - Sms
           - Webhook
@@ -2062,6 +2149,50 @@ components:
           type: string
         apiSecretRef:
           description: Reference to API secret from Configuration Store
+          nullable: true
+          type: string
+        body:
+          description: The body of the Amazon Queue Message
+          nullable: true
+          type: string
+        queueUrlRef:
+          description: Reference to queue url from Configuration Store
+          nullable: true
+          type: string
+      type: object
+    AmazonSqsPrincipalAuthNotificationType:
+      additionalProperties: false
+      description: The information required to create or update an AWS SQS notification
+        with principal authentication
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
+          enum:
+          - AmazonSqsPrincipalAuth
+          minLength: 1
+          type: string
+        body:
+          description: The body of the Amazon Queue Message
+          maxLength: 1024
+          minLength: 1
+          pattern: "^[\\s\\S]*$"
+          type: string
+        queueUrlRef:
+          description: Reference to queue url from Configuration Store
+          minLength: 1
+          type: string
+      required:
+      - body
+      - queueUrlRef
+      - type
+      type: object
+    AmazonSqsPrincipalAuthNotificationTypeResponse:
+      additionalProperties: false
+      description: Holds readonly information about an AWS SQS with Principal Authentication
+        notification
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
           nullable: true
           type: string
         body:
@@ -2814,6 +2945,7 @@ components:
         that is being created
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationType'
+      - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationType'
       - $ref: '#/components/schemas/EmailNotificationType'
       - $ref: '#/components/schemas/SmsNotificationType'
       - $ref: '#/components/schemas/WebhookNotificationType'
@@ -2823,6 +2955,7 @@ components:
       description: Holds readonly information about a Finbourne.Notifications.WebApi.Dtos.Notifications.Notification
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationTypeResponse'
+      - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationTypeResponse'
       - $ref: '#/components/schemas/EmailNotificationTypeResponse'
       - $ref: '#/components/schemas/SmsNotificationTypeResponse'
       - $ref: '#/components/schemas/WebhookNotificationTypeResponse'

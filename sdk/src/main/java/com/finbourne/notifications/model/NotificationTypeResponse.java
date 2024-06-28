@@ -13,6 +13,7 @@ package com.finbourne.notifications.model;
 import java.util.Objects;
 import com.finbourne.notifications.model.AmazonSqsNotificationTypeResponse;
 import com.finbourne.notifications.model.AmazonSqsPrincipalAuthNotificationTypeResponse;
+import com.finbourne.notifications.model.AzureServiceBusTypeResponse;
 import com.finbourne.notifications.model.EmailNotificationTypeResponse;
 import com.finbourne.notifications.model.SmsNotificationTypeResponse;
 import com.finbourne.notifications.model.WebhookNotificationTypeResponse;
@@ -78,6 +79,7 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<AmazonSqsNotificationTypeResponse> adapterAmazonSqsNotificationTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(AmazonSqsNotificationTypeResponse.class));
             final TypeAdapter<AmazonSqsPrincipalAuthNotificationTypeResponse> adapterAmazonSqsPrincipalAuthNotificationTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(AmazonSqsPrincipalAuthNotificationTypeResponse.class));
+            final TypeAdapter<AzureServiceBusTypeResponse> adapterAzureServiceBusTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(AzureServiceBusTypeResponse.class));
             final TypeAdapter<EmailNotificationTypeResponse> adapterEmailNotificationTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(EmailNotificationTypeResponse.class));
             final TypeAdapter<SmsNotificationTypeResponse> adapterSmsNotificationTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(SmsNotificationTypeResponse.class));
             final TypeAdapter<WebhookNotificationTypeResponse> adapterWebhookNotificationTypeResponse = gson.getDelegateAdapter(this, TypeToken.get(WebhookNotificationTypeResponse.class));
@@ -102,6 +104,12 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
                       elementAdapter.write(out, element);
                       return;
                     }
+                    // check if the actual instance is of the type `AzureServiceBusTypeResponse`
+                    if (value.getActualInstance() instanceof AzureServiceBusTypeResponse) {
+                      JsonElement element = adapterAzureServiceBusTypeResponse.toJsonTree((AzureServiceBusTypeResponse)value.getActualInstance());
+                      elementAdapter.write(out, element);
+                      return;
+                    }
                     // check if the actual instance is of the type `EmailNotificationTypeResponse`
                     if (value.getActualInstance() instanceof EmailNotificationTypeResponse) {
                       JsonElement element = adapterEmailNotificationTypeResponse.toJsonTree((EmailNotificationTypeResponse)value.getActualInstance());
@@ -120,7 +128,7 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
                       elementAdapter.write(out, element);
                       return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse");
                 }
 
                 @Override
@@ -155,6 +163,18 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
                       // deserialization failed, continue
                       errorMessages.add(String.format("Deserialization for AmazonSqsPrincipalAuthNotificationTypeResponse failed with `%s`.", e.getMessage()));
                       log.log(Level.FINER, "Input data does not match schema 'AmazonSqsPrincipalAuthNotificationTypeResponse'", e);
+                    }
+                    // deserialize AzureServiceBusTypeResponse
+                    try {
+                      // validate the JSON object to see if any exception is thrown
+                      AzureServiceBusTypeResponse.validateJsonElement(jsonElement);
+                      actualAdapter = adapterAzureServiceBusTypeResponse;
+                      match++;
+                      log.log(Level.FINER, "Input data matches schema 'AzureServiceBusTypeResponse'");
+                    } catch (Exception e) {
+                      // deserialization failed, continue
+                      errorMessages.add(String.format("Deserialization for AzureServiceBusTypeResponse failed with `%s`.", e.getMessage()));
+                      log.log(Level.FINER, "Input data does not match schema 'AzureServiceBusTypeResponse'", e);
                     }
                     // deserialize EmailNotificationTypeResponse
                     try {
@@ -222,6 +242,11 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public NotificationTypeResponse(AzureServiceBusTypeResponse o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public NotificationTypeResponse(EmailNotificationTypeResponse o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -240,6 +265,7 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
     static {
         schemas.put("AmazonSqsNotificationTypeResponse", AmazonSqsNotificationTypeResponse.class);
         schemas.put("AmazonSqsPrincipalAuthNotificationTypeResponse", AmazonSqsPrincipalAuthNotificationTypeResponse.class);
+        schemas.put("AzureServiceBusTypeResponse", AzureServiceBusTypeResponse.class);
         schemas.put("EmailNotificationTypeResponse", EmailNotificationTypeResponse.class);
         schemas.put("SmsNotificationTypeResponse", SmsNotificationTypeResponse.class);
         schemas.put("WebhookNotificationTypeResponse", WebhookNotificationTypeResponse.class);
@@ -253,7 +279,7 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse
+     * AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -265,6 +291,11 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
         }
 
         if (instance instanceof AmazonSqsPrincipalAuthNotificationTypeResponse) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof AzureServiceBusTypeResponse) {
             super.setActualInstance(instance);
             return;
         }
@@ -284,14 +315,14 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse");
+        throw new RuntimeException("Invalid instance type. Must be AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse
+     * AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse
      *
-     * @return The actual instance (AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse)
+     * @return The actual instance (AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse)
      */
     @Override
     public Object getActualInstance() {
@@ -317,6 +348,16 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
      */
     public AmazonSqsPrincipalAuthNotificationTypeResponse getAmazonSqsPrincipalAuthNotificationTypeResponse() throws ClassCastException {
         return (AmazonSqsPrincipalAuthNotificationTypeResponse)super.getActualInstance();
+    }
+    /**
+     * Get the actual instance of `AzureServiceBusTypeResponse`. If the actual instance is not `AzureServiceBusTypeResponse`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AzureServiceBusTypeResponse`
+     * @throws ClassCastException if the instance is not `AzureServiceBusTypeResponse`
+     */
+    public AzureServiceBusTypeResponse getAzureServiceBusTypeResponse() throws ClassCastException {
+        return (AzureServiceBusTypeResponse)super.getActualInstance();
     }
     /**
      * Get the actual instance of `EmailNotificationTypeResponse`. If the actual instance is not `EmailNotificationTypeResponse`,
@@ -375,6 +416,14 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
       errorMessages.add(String.format("Deserialization for AmazonSqsPrincipalAuthNotificationTypeResponse failed with `%s`.", e.getMessage()));
       // continue to the next one
     }
+    // validate the json string with AzureServiceBusTypeResponse
+    try {
+      AzureServiceBusTypeResponse.validateJsonElement(jsonElement);
+      validCount++;
+    } catch (Exception e) {
+      errorMessages.add(String.format("Deserialization for AzureServiceBusTypeResponse failed with `%s`.", e.getMessage()));
+      // continue to the next one
+    }
     // validate the json string with EmailNotificationTypeResponse
     try {
       EmailNotificationTypeResponse.validateJsonElement(jsonElement);
@@ -400,7 +449,7 @@ public class NotificationTypeResponse extends AbstractOpenApiSchema {
       // continue to the next one
     }
     if (validCount != 1) {
-      throw new IOException(String.format("The JSON string is invalid for NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+      throw new IOException(String.format("The JSON string is invalid for NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
     }
   }
 

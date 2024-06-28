@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.963
+  version: 0.1.968
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1489,9 +1489,13 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqsPrincipalAuth
+                  type: AzureServiceBus
                   body: "Event with message {{body.message}}"
-                  queueUrlRef: config://shared/official/system-a-config/queueUrl
+                  namespaceRef: config://shared/official/system-a-config/namespace
+                  queueNameRef: config://shared/official/system-a-config/queueName
+                  tenantIdRef: config://shared/official/system-a-config/tenantId
+                  clientIdRef: config://shared/official/system-a-config/clientId
+                  clientSecretRef: config://shared/official/system-a-config/clientSecret
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
@@ -1826,9 +1830,13 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqsPrincipalAuth
+                  type: AzureServiceBus
                   body: "Event with message {{body.message}}"
-                  queueUrlRef: config://shared/official/system-a-config/queueUrl
+                  namespaceRef: config://shared/official/system-a-config/namespace
+                  queueNameRef: config://shared/official/system-a-config/queueName
+                  tenantIdRef: config://shared/official/system-a-config/tenantId
+                  clientIdRef: config://shared/official/system-a-config/clientId
+                  clientSecretRef: config://shared/official/system-a-config/clientSecret
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
@@ -2105,6 +2113,7 @@ components:
           enum:
           - AmazonSqs
           - AmazonSqsPrincipalAuth
+          - AzureServiceBus
           - Email
           - Sms
           - Webhook
@@ -2246,6 +2255,85 @@ components:
           type: string
       required:
       - result
+      type: object
+    AzureServiceBusNotificationType:
+      additionalProperties: false
+      description: The information required to create or update an Azure Service Bus
+        notification
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
+          enum:
+          - AzureServiceBus
+          minLength: 1
+          type: string
+        namespace:
+          description: Reference to namespace from Configuration Store
+          minLength: 1
+          type: string
+        queueName:
+          description: Reference to queue name from Configuration Store
+          minLength: 1
+          type: string
+        body:
+          description: The body of the Azure Service Bus Message
+          maxLength: 1024
+          minLength: 1
+          pattern: "^[\\s\\S]*$"
+          type: string
+        tenantId:
+          description: Reference to tenant id from Configuration Store
+          minLength: 1
+          type: string
+        clientId:
+          description: Reference to client id from Configuration Store
+          minLength: 1
+          type: string
+        clientSecret:
+          description: Reference to client secret from Configuration Store
+          minLength: 1
+          type: string
+      required:
+      - body
+      - clientId
+      - clientSecret
+      - namespace
+      - queueName
+      - tenantId
+      - type
+      type: object
+    AzureServiceBusTypeResponse:
+      additionalProperties: false
+      description: Holds readonly information about an Azure Service Bus notification
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
+          nullable: true
+          type: string
+        namespaceRef:
+          description: Reference to namespace from Configuration Store
+          nullable: true
+          type: string
+        queueNameRef:
+          description: Reference to queue name from Configuration Store
+          nullable: true
+          type: string
+        body:
+          description: The body of the Azure service bus Message
+          nullable: true
+          type: string
+        tenantIdRef:
+          description: Reference to tenant id from Configuration Store
+          nullable: true
+          type: string
+        clientIdRef:
+          description: Reference to client id from Configuration Store
+          nullable: true
+          type: string
+        clientSecretRef:
+          description: Reference to client secret from Configuration Store
+          nullable: true
+          type: string
       type: object
     CreateNotificationRequest:
       additionalProperties: false
@@ -2946,6 +3034,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationType'
       - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationType'
+      - $ref: '#/components/schemas/AzureServiceBusNotificationType'
       - $ref: '#/components/schemas/EmailNotificationType'
       - $ref: '#/components/schemas/SmsNotificationType'
       - $ref: '#/components/schemas/WebhookNotificationType'
@@ -2956,6 +3045,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationTypeResponse'
       - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationTypeResponse'
+      - $ref: '#/components/schemas/AzureServiceBusTypeResponse'
       - $ref: '#/components/schemas/EmailNotificationTypeResponse'
       - $ref: '#/components/schemas/SmsNotificationTypeResponse'
       - $ref: '#/components/schemas/WebhookNotificationTypeResponse'

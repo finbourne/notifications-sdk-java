@@ -13,6 +13,11 @@ Holds readonly information about a Finbourne.Notifications.WebApi.Dtos.Notificat
 |**apiSecretRef** | **String** | Reference to API secret from Configuration Store |  [optional] |
 |**body** | **String** | The body of the SMS |  [optional] |
 |**queueUrlRef** | **String** | Reference to queue url from Configuration Store |  [optional] |
+|**namespaceRef** | **String** | Reference to namespace from Configuration Store |  [optional] |
+|**queueNameRef** | **String** | Reference to queue name from Configuration Store |  [optional] |
+|**tenantIdRef** | **String** | Reference to tenant id from Configuration Store |  [optional] |
+|**clientIdRef** | **String** | Reference to client id from Configuration Store |  [optional] |
+|**clientSecretRef** | **String** | Reference to client secret from Configuration Store |  [optional] |
 |**subject** | **String** | The subject of the email |  [optional] |
 |**plainTextBody** | **String** | The plain text body of the email |  [optional] |
 |**htmlBody** | **String** | The HTML body of the email (if any) |  [optional] |

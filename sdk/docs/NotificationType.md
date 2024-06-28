@@ -13,6 +13,11 @@ Holds information about a Finbourne.Notifications.WebApi.Dtos.Notifications.Noti
 |**apiSecretRef** | **String** | Reference to API secret from Configuration Store |  |
 |**body** | **String** | The body of the SMS |  |
 |**queueUrlRef** | **String** | Reference to queue url from Configuration Store |  |
+|**namespace** | **String** | Reference to namespace from Configuration Store |  |
+|**queueName** | **String** | Reference to queue name from Configuration Store |  |
+|**tenantId** | **String** | Reference to tenant id from Configuration Store |  |
+|**clientId** | **String** | Reference to client id from Configuration Store |  |
+|**clientSecret** | **String** | Reference to client secret from Configuration Store |  |
 |**subject** | **String** | The subject of the email |  |
 |**plainTextBody** | **String** | The plain text body of the email |  |
 |**htmlBody** | **String** | The HTML body of the email (if any) |  [optional] |
@@ -35,6 +40,7 @@ Holds information about a Finbourne.Notifications.WebApi.Dtos.Notifications.Noti
 |---- | -----|
 | AMAZONSQS | &quot;AmazonSqs&quot; |
 | AMAZONSQSPRINCIPALAUTH | &quot;AmazonSqsPrincipalAuth&quot; |
+| AZURESERVICEBUS | &quot;AzureServiceBus&quot; |
 | EMAIL | &quot;Email&quot; |
 | SMS | &quot;Sms&quot; |
 | WEBHOOK | &quot;Webhook&quot; |

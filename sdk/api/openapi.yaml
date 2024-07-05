@@ -6,12 +6,12 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 1.0.0
+  version: 0.1.971
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
 servers:
-- url: http://localhost.lusid.com:8310
+- url: https://fbn-prd.lusid.com/notification
 security:
 - {}
 tags:
@@ -223,7 +223,7 @@ paths:
         schema:
           maxLength: 512
           minLength: 0
-          pattern: "^[a-zA-Z]+$"
+          pattern: "^[a-zA-Z]*$"
           type: string
         style: simple
       responses:
@@ -526,7 +526,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/CreateSubscription'
           application/json:
@@ -540,7 +540,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/CreateSubscription'
           text/json:
@@ -554,7 +554,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/CreateSubscription'
           application/*+json:
@@ -568,7 +568,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/CreateSubscription'
         description: The data to create a subscription
@@ -591,7 +591,7 @@ paths:
                 userIdCreated: TestClient
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
                 userIdModified: TestClient
-                useAsAuth: TestClient
+                useAsAuth: Auth user
                 href: https://fbn-test.lusid.com/notifications/api/subscriptions/TestScope/TestCode
               schema:
                 $ref: '#/components/schemas/Subscription'
@@ -713,7 +713,7 @@ paths:
                 userIdCreated: TestClient
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
                 userIdModified: TestClient
-                useAsAuth: TestClient
+                useAsAuth: Auth user
                 href: https://fbn-test.lusid.com/notifications/api/subscriptions/TestScope/TestCode
               schema:
                 $ref: '#/components/schemas/Subscription'
@@ -778,7 +778,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
           application/json:
@@ -789,7 +789,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
           text/json:
@@ -800,7 +800,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
           application/*+json:
@@ -811,7 +811,7 @@ paths:
               matchingPattern:
                 eventType: Manual
                 filter: Body.Message eq 'TestMessage'
-              useAsAuth: TestClient
+              useAsAuth: Auth user
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
         description: The data to update a subscription
@@ -834,7 +834,7 @@ paths:
                 userIdCreated: TestClient
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
                 userIdModified: TestClient
-                useAsAuth: TestClient
+                useAsAuth: Auth user
                 href: https://fbn-test.lusid.com/notifications/api/subscriptions/TestScope/TestCode
               schema:
                 $ref: '#/components/schemas/Subscription'
@@ -1489,9 +1489,13 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqsPrincipalAuth
+                  type: AzureServiceBus
                   body: "Event with message {{body.message}}"
-                  queueUrlRef: config://shared/official/system-a-config/queueUrl
+                  namespaceRef: config://shared/official/system-a-config/namespace
+                  queueNameRef: config://shared/official/system-a-config/queueName
+                  tenantIdRef: config://shared/official/system-a-config/tenantId
+                  clientIdRef: config://shared/official/system-a-config/clientId
+                  clientSecretRef: config://shared/official/system-a-config/clientSecret
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
@@ -1826,9 +1830,13 @@ paths:
                 displayName: Example name
                 description: Example description
                 notificationType:
-                  type: AmazonSqsPrincipalAuth
+                  type: AzureServiceBus
                   body: "Event with message {{body.message}}"
-                  queueUrlRef: config://shared/official/system-a-config/queueUrl
+                  namespaceRef: config://shared/official/system-a-config/namespace
+                  queueNameRef: config://shared/official/system-a-config/queueName
+                  tenantIdRef: config://shared/official/system-a-config/tenantId
+                  clientIdRef: config://shared/official/system-a-config/clientId
+                  clientSecretRef: config://shared/official/system-a-config/clientSecret
                 createdAt: 2020-06-15T12:00:00.0000000+00:00
                 userIdCreated: Example user
                 modifiedAt: 2020-06-20T12:00:00.0000000+00:00
@@ -2105,9 +2113,11 @@ components:
           enum:
           - AmazonSqs
           - AmazonSqsPrincipalAuth
+          - AzureServiceBus
           - Email
           - Sms
           - Webhook
+          minLength: 1
           type: string
         apiKeyRef:
           description: Reference to API key from Configuration Store
@@ -2140,12 +2150,6 @@ components:
       properties:
         type:
           description: The type of delivery mechanism for this notification
-          enum:
-          - AmazonSqs
-          - AmazonSqsPrincipalAuth
-          - Email
-          - Sms
-          - Webhook
           nullable: true
           type: string
         apiKeyRef:
@@ -2174,6 +2178,7 @@ components:
           description: The type of delivery mechanism for this notification
           enum:
           - AmazonSqsPrincipalAuth
+          minLength: 1
           type: string
         body:
           description: The body of the Amazon Queue Message
@@ -2197,8 +2202,6 @@ components:
       properties:
         type:
           description: The type of delivery mechanism for this notification
-          enum:
-          - AmazonSqsPrincipalAuth
           nullable: true
           type: string
         body:
@@ -2252,6 +2255,85 @@ components:
           type: string
       required:
       - result
+      type: object
+    AzureServiceBusNotificationType:
+      additionalProperties: false
+      description: The information required to create or update an Azure Service Bus
+        notification
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
+          enum:
+          - AzureServiceBus
+          minLength: 1
+          type: string
+        namespace:
+          description: Reference to namespace from Configuration Store
+          minLength: 1
+          type: string
+        queueName:
+          description: Reference to queue name from Configuration Store
+          minLength: 1
+          type: string
+        body:
+          description: The body of the Azure Service Bus Message
+          maxLength: 1024
+          minLength: 1
+          pattern: "^[\\s\\S]*$"
+          type: string
+        tenantId:
+          description: Reference to tenant id from Configuration Store
+          minLength: 1
+          type: string
+        clientId:
+          description: Reference to client id from Configuration Store
+          minLength: 1
+          type: string
+        clientSecret:
+          description: Reference to client secret from Configuration Store
+          minLength: 1
+          type: string
+      required:
+      - body
+      - clientId
+      - clientSecret
+      - namespace
+      - queueName
+      - tenantId
+      - type
+      type: object
+    AzureServiceBusTypeResponse:
+      additionalProperties: false
+      description: Holds readonly information about an Azure Service Bus notification
+      properties:
+        type:
+          description: The type of delivery mechanism for this notification
+          nullable: true
+          type: string
+        namespaceRef:
+          description: Reference to namespace from Configuration Store
+          nullable: true
+          type: string
+        queueNameRef:
+          description: Reference to queue name from Configuration Store
+          nullable: true
+          type: string
+        body:
+          description: The body of the Azure service bus Message
+          nullable: true
+          type: string
+        tenantIdRef:
+          description: Reference to tenant id from Configuration Store
+          nullable: true
+          type: string
+        clientIdRef:
+          description: Reference to client id from Configuration Store
+          nullable: true
+          type: string
+        clientSecretRef:
+          description: Reference to client secret from Configuration Store
+          nullable: true
+          type: string
       type: object
     CreateNotificationRequest:
       additionalProperties: false
@@ -2409,6 +2491,7 @@ components:
           description: The type of delivery mechanism for this notification
           enum:
           - Email
+          minLength: 1
           type: string
         subject:
           description: The subject of the email
@@ -2462,8 +2545,6 @@ components:
       properties:
         type:
           description: The type of delivery mechanism for this notification
-          enum:
-          - Email
           nullable: true
           type: string
         subject:
@@ -2953,6 +3034,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationType'
       - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationType'
+      - $ref: '#/components/schemas/AzureServiceBusNotificationType'
       - $ref: '#/components/schemas/EmailNotificationType'
       - $ref: '#/components/schemas/SmsNotificationType'
       - $ref: '#/components/schemas/WebhookNotificationType'
@@ -2963,6 +3045,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/AmazonSqsNotificationTypeResponse'
       - $ref: '#/components/schemas/AmazonSqsPrincipalAuthNotificationTypeResponse'
+      - $ref: '#/components/schemas/AzureServiceBusTypeResponse'
       - $ref: '#/components/schemas/EmailNotificationTypeResponse'
       - $ref: '#/components/schemas/SmsNotificationTypeResponse'
       - $ref: '#/components/schemas/WebhookNotificationTypeResponse'
@@ -3539,6 +3622,7 @@ components:
           description: The type of delivery mechanism for this notification
           enum:
           - Sms
+          minLength: 1
           type: string
         body:
           description: The body of the SMS
@@ -3564,8 +3648,6 @@ components:
       properties:
         type:
           description: The type of delivery mechanism for this notification
-          enum:
-          - Sms
           nullable: true
           type: string
         body:
@@ -3734,6 +3816,7 @@ components:
           description: The type of delivery mechanism for this notification
           enum:
           - Webhook
+          minLength: 1
           type: string
         httpMethod:
           description: "The HTTP method such as GET, POST, etc. to use on the request"
@@ -3791,8 +3874,6 @@ components:
       properties:
         type:
           description: The type of delivery mechanism for this notification
-          enum:
-          - Webhook
           nullable: true
           type: string
         httpMethod:
@@ -3836,7 +3917,7 @@ components:
       description: OAuth2 Implicit Grant
       flows:
         implicit:
-          authorizationUrl: https://lusid-fbn-ci.okta.com/oauth2/aus49h9b8rQPvouCH2p7/v1/authorize
+          authorizationUrl: https://lusid.okta.com/oauth2/default/v1/authorize
           scopes: {}
       type: oauth2
 x-tagGroups:

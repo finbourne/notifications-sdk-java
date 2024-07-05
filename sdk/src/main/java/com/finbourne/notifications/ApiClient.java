@@ -62,10 +62,10 @@ import com.finbourne.notifications.auth.OAuthFlow;
  */
 public class ApiClient {
 
-    private String basePath = "http://localhost.lusid.com:8310";
+    private String basePath = "https://fbn-prd.lusid.com/notification";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "http://localhost.lusid.com:8310",
+      "https://fbn-prd.lusid.com/notification",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )
@@ -225,7 +225,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g http://localhost.lusid.com:8310
+     * @param basePath Base path of the URL (e.g https://fbn-prd.lusid.com/notification
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

@@ -1,6 +1,6 @@
 # DeliveriesApi
 
-All URIs are relative to *http://localhost.lusid.com:8310*
+All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -28,7 +28,7 @@ import com.finbourne.notifications.api.DeliveriesApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost.lusid.com:8310");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");

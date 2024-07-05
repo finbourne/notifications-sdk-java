@@ -50,54 +50,9 @@ import com.finbourne.notifications.JSON;
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AmazonSqsPrincipalAuthNotificationTypeResponse {
-  /**
-   * The type of delivery mechanism for this notification
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    AMAZONSQSPRINCIPALAUTH("AmazonSqsPrincipalAuth");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  private String type;
 
   public static final String SERIALIZED_NAME_BODY = "body";
   @SerializedName(SERIALIZED_NAME_BODY)
@@ -110,7 +65,7 @@ public class AmazonSqsPrincipalAuthNotificationTypeResponse {
   public AmazonSqsPrincipalAuthNotificationTypeResponse() {
   }
 
-  public AmazonSqsPrincipalAuthNotificationTypeResponse type(TypeEnum type) {
+  public AmazonSqsPrincipalAuthNotificationTypeResponse type(String type) {
     
     this.type = type;
     return this;
@@ -121,12 +76,12 @@ public class AmazonSqsPrincipalAuthNotificationTypeResponse {
    * @return type
   **/
   @jakarta.annotation.Nullable
-  public TypeEnum getType() {
+  public String getType() {
     return type;
   }
 
 
-  public void setType(TypeEnum type) {
+  public void setType(String type) {
     this.type = type;
   }
 

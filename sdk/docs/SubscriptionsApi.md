@@ -1,6 +1,6 @@
 # SubscriptionsApi
 
-All URIs are relative to *https://fbn-prd.lusid.com/notification*
+All URIs are relative to *http://localhost.lusid.com:8310*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -30,7 +30,7 @@ import com.finbourne.notifications.api.SubscriptionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
+    defaultClient.setBasePath("http://localhost.lusid.com:8310");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -98,7 +98,7 @@ import com.finbourne.notifications.api.SubscriptionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
+    defaultClient.setBasePath("http://localhost.lusid.com:8310");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -168,7 +168,7 @@ import com.finbourne.notifications.api.SubscriptionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
+    defaultClient.setBasePath("http://localhost.lusid.com:8310");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -239,7 +239,7 @@ import com.finbourne.notifications.api.SubscriptionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
+    defaultClient.setBasePath("http://localhost.lusid.com:8310");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -317,7 +317,7 @@ import com.finbourne.notifications.api.SubscriptionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
+    defaultClient.setBasePath("http://localhost.lusid.com:8310");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");

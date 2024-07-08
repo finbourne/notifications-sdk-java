@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.971
+  version: 0.1.972
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1042,6 +1042,19 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create Azure Service Bus Notification:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
           application/json:
@@ -1110,6 +1123,19 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create Azure Service Bus Notification:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
           text/json:
@@ -1178,6 +1204,19 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create Azure Service Bus Notification:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
           application/*+json:
@@ -1246,6 +1285,19 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Create Azure Service Bus Notification:
+                value:
+                  notificationId: TestId
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/CreateNotificationRequest'
         description: The data to create a notification
@@ -1356,6 +1408,24 @@ paths:
                       type: AmazonSqsPrincipalAuth
                       body: "Event with message {{body.message}}"
                       queueUrlRef: config://shared/official/system-a-config/queueUrl
+                    createdAt: 2020-06-15T12:00:00.0000000+00:00
+                    userIdCreated: Example user
+                    modifiedAt: 2020-06-20T12:00:00.0000000+00:00
+                    userIdModified: Example user
+                    href: http://fbn-test/api/subscriptions/testScope/testCode/notifications/ExampleId
+                Azure Service Bus Notification:
+                  value:
+                    notificationId: ExampleId
+                    displayName: Example name
+                    description: Example description
+                    notificationType:
+                      type: AzureServiceBus
+                      body: "Event with message {{body.message}}"
+                      namespaceRef: config://shared/official/system-a-config/namespace
+                      queueNameRef: config://shared/official/system-a-config/queueName
+                      tenantIdRef: config://shared/official/system-a-config/tenantId
+                      clientIdRef: config://shared/official/system-a-config/clientId
+                      clientSecretRef: config://shared/official/system-a-config/clientSecret
                     createdAt: 2020-06-15T12:00:00.0000000+00:00
                     userIdCreated: Example user
                     modifiedAt: 2020-06-20T12:00:00.0000000+00:00
@@ -1628,6 +1698,18 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update Azure Service Bus Notification:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
           application/json:
@@ -1691,6 +1773,18 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update Azure Service Bus Notification:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
           text/json:
@@ -1754,6 +1848,18 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update Azure Service Bus Notification:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
           application/*+json:
@@ -1817,6 +1923,18 @@ paths:
                     Type: AmazonSqsPrincipalAuth
                     Body: "Event with message {{body.message}}"
                     QueueUrlRef: config://shared/official/system-a-config/queueUrl
+              Update Azure Service Bus Notification:
+                value:
+                  displayName: TestDisplayName
+                  description: Example description
+                  notificationType:
+                    Type: AzureServiceBus
+                    Body: "Event with message {{body.message}}"
+                    Namespace: config://shared/official/system-a-config/namespace
+                    QueueName: config://shared/official/system-a-config/queueName
+                    TenantId: config://shared/official/system-a-config/tenantId
+                    ClientId: config://shared/official/system-a-config/clientId
+                    ClientSecret: config://shared/official/system-a-config/clientSecret
             schema:
               $ref: '#/components/schemas/UpdateNotificationRequest'
         description: The data to update a notification

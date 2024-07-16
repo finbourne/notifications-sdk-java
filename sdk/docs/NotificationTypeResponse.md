@@ -8,7 +8,7 @@ Holds readonly information about a Finbourne.Notifications.WebApi.Dtos.Notificat
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** | The type of delivery mechanism for this notification |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) | The type of delivery mechanism for this notification |  [optional] |
 |**apiKeyRef** | **String** | Reference to API key from Configuration Store |  [optional] |
 |**apiSecretRef** | **String** | Reference to API secret from Configuration Store |  [optional] |
 |**body** | **String** | The body of the SMS |  [optional] |
@@ -31,6 +31,19 @@ Holds readonly information about a Finbourne.Notifications.WebApi.Dtos.Notificat
 |**authenticationConfigurationItemPaths** | **Map&lt;String, String&gt;** | The paths of the Configuration Store configuration items that contain the authentication configuration. Each  authentication type requires different keys:  - Lusid - None required  - BasicAuth - Requires &#39;Username&#39; and &#39;Password&#39;  - BearerToken - Requires &#39;BearerToken&#39; and optionally &#39;BearerScheme&#39;     e.g. the following would be valid assuming that the config is present in the configuration store at the  specified paths:      \&quot;authenticationType\&quot;: \&quot;BasicAuth\&quot;,   \&quot;authenticationConfigurationItemPaths\&quot;: {   \&quot;Username\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\&quot;,   \&quot;Password\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\&quot;   } |  [optional] |
 |**contentType** | **String** | The type of the content e.g. Json |  [optional] |
 |**content** | **Object** | The content of the request |  [optional] |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| AMAZONSQS | &quot;AmazonSqs&quot; |
+| AMAZONSQSPRINCIPALAUTH | &quot;AmazonSqsPrincipalAuth&quot; |
+| AZURESERVICEBUS | &quot;AzureServiceBus&quot; |
+| EMAIL | &quot;Email&quot; |
+| SMS | &quot;Sms&quot; |
+| WEBHOOK | &quot;Webhook&quot; |
 
 
 

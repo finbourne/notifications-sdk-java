@@ -7,49 +7,60 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 | [**triggerManualEvent**](ManualEventApi.md#triggerManualEvent) | **POST** /api/manualevent | [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event. |
 
 
-<a id="triggerManualEvent"></a>
-# **triggerManualEvent**
-> ManualEvent triggerManualEvent(manualEventRequest).execute();
+
+## triggerManualEvent
+
+> ManualEvent triggerManualEvent(manualEventRequest)
 
 [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.ManualEventApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    ManualEventApi apiInstance = new ManualEventApi(defaultClient);
-    ManualEventRequest manualEventRequest = new ManualEventRequest(); // ManualEventRequest | The data required to trigger a manual event.
-    try {
-      ManualEvent result = apiInstance.triggerManualEvent(manualEventRequest)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ManualEventApi#triggerManualEvent");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class ManualEventApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        ManualEventApi apiInstance = ApiFactoryBuilder.build(fileName).build(ManualEventApi.class);
+        ManualEventRequest manualEventRequest = new ManualEventRequest(); // ManualEventRequest | The data required to trigger a manual event.
+        try {
+            ManualEvent result = apiInstance.triggerManualEvent(manualEventRequest).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ManualEventApi#triggerManualEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -59,14 +70,11 @@ public class Example {
 
 [**ManualEvent**](ManualEvent.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -74,4 +82,6 @@ public class Example {
 | **201** | Created |  -  |
 | **400** | The details of the input related failure |  -  |
 | **0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

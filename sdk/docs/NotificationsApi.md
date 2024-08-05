@@ -11,51 +11,62 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 | [**updateNotification**](NotificationsApi.md#updateNotification) | **PUT** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription |
 
 
-<a id="createNotification"></a>
-# **createNotification**
-> Notification createNotification(scope, code, createNotificationRequest).execute();
+
+## createNotification
+
+> Notification createNotification(scope, code, createNotificationRequest)
 
 [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.NotificationsApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    NotificationsApi apiInstance = new NotificationsApi(defaultClient);
-    String scope = "scope_example"; // String | The scope that identifies a subscription
-    String code = "code_example"; // String | The code that identifies a subscription
-    CreateNotificationRequest createNotificationRequest = new CreateNotificationRequest(); // CreateNotificationRequest | The data to create a notification
-    try {
-      Notification result = apiInstance.createNotification(scope, code, createNotificationRequest)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling NotificationsApi#createNotification");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class NotificationsApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
+        String scope = "scope_example"; // String | The scope that identifies a subscription
+        String code = "code_example"; // String | The code that identifies a subscription
+        CreateNotificationRequest createNotificationRequest = new CreateNotificationRequest(); // CreateNotificationRequest | The data to create a notification
+        try {
+            Notification result = apiInstance.createNotification(scope, code, createNotificationRequest).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationsApi#createNotification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -67,14 +78,11 @@ public class Example {
 
 [**Notification**](Notification.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -83,50 +91,63 @@ public class Example {
 | **400** | The details of the input related failure |  -  |
 | **0** | Error response |  -  |
 
-<a id="deleteNotification"></a>
-# **deleteNotification**
-> deleteNotification(scope, code, id).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## deleteNotification
+
+> deleteNotification(scope, code, id)
 
 [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.NotificationsApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    NotificationsApi apiInstance = new NotificationsApi(defaultClient);
-    String scope = "scope_example"; // String | The scope that identifies a subscription
-    String code = "code_example"; // String | The code that identifies a subscription
-    String id = "id_example"; // String | The unique identifier of the notification
-    try {
-      apiInstance.deleteNotification(scope, code, id)
-            .execute();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling NotificationsApi#deleteNotification");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class NotificationsApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
+        String scope = "scope_example"; // String | The scope that identifies a subscription
+        String code = "code_example"; // String | The code that identifies a subscription
+        String id = "id_example"; // String | The unique identifier of the notification
+        try {
+            apiInstance.deleteNotification(scope, code, id).execute();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationsApi#deleteNotification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -138,14 +159,11 @@ public class Example {
 
 null (empty response body)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -155,51 +173,64 @@ null (empty response body)
 | **404** | No notification exists in current scope |  -  |
 | **0** | Error response |  -  |
 
-<a id="getNotification"></a>
-# **getNotification**
-> Notification getNotification(scope, code, id).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## getNotification
+
+> Notification getNotification(scope, code, id)
 
 [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.NotificationsApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    NotificationsApi apiInstance = new NotificationsApi(defaultClient);
-    String scope = "scope_example"; // String | The scope that identifies a subscription
-    String code = "code_example"; // String | The code that identifies a subscription
-    String id = "id_example"; // String | The unique identifier of the notification
-    try {
-      Notification result = apiInstance.getNotification(scope, code, id)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling NotificationsApi#getNotification");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class NotificationsApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
+        String scope = "scope_example"; // String | The scope that identifies a subscription
+        String code = "code_example"; // String | The code that identifies a subscription
+        String id = "id_example"; // String | The unique identifier of the notification
+        try {
+            Notification result = apiInstance.getNotification(scope, code, id).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationsApi#getNotification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -211,14 +242,11 @@ public class Example {
 
 [**Notification**](Notification.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -228,50 +256,63 @@ public class Example {
 | **404** | No notification exists in current scope |  -  |
 | **0** | Error response |  -  |
 
-<a id="listNotifications"></a>
-# **listNotifications**
-> ResourceListOfNotification listNotifications(scope, code).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## listNotifications
+
+> ResourceListOfNotification listNotifications(scope, code)
 
 [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.NotificationsApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    NotificationsApi apiInstance = new NotificationsApi(defaultClient);
-    String scope = "scope_example"; // String | The scope that identifies a subscription
-    String code = "code_example"; // String | The code that identifies a subscription
-    try {
-      ResourceListOfNotification result = apiInstance.listNotifications(scope, code)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling NotificationsApi#listNotifications");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class NotificationsApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
+        String scope = "scope_example"; // String | The scope that identifies a subscription
+        String code = "code_example"; // String | The code that identifies a subscription
+        try {
+            ResourceListOfNotification result = apiInstance.listNotifications(scope, code).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationsApi#listNotifications");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -282,14 +323,11 @@ public class Example {
 
 [**ResourceListOfNotification**](ResourceListOfNotification.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -299,52 +337,65 @@ public class Example {
 | **404** | No notifications exists with the provided filter(s) |  -  |
 | **0** | Error response |  -  |
 
-<a id="updateNotification"></a>
-# **updateNotification**
-> Notification updateNotification(scope, code, id, updateNotificationRequest).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## updateNotification
+
+> Notification updateNotification(scope, code, id, updateNotificationRequest)
 
 [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.notifications.ApiClient;
-import com.finbourne.notifications.ApiException;
-import com.finbourne.notifications.Configuration;
-import com.finbourne.notifications.auth.*;
-import com.finbourne.notifications.models.*;
+import com.finbourne.notifications.model.*;
 import com.finbourne.notifications.api.NotificationsApi;
+import com.finbourne.notifications.extensions.ApiConfigurationException;
+import com.finbourne.notifications.extensions.ApiFactoryBuilder;
+import com.finbourne.notifications.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/notification");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    NotificationsApi apiInstance = new NotificationsApi(defaultClient);
-    String scope = "scope_example"; // String | The scope that identifies a subscription
-    String code = "code_example"; // String | The code that identifies a subscription
-    String id = "id_example"; // String | The unique identifier of the notification
-    UpdateNotificationRequest updateNotificationRequest = new UpdateNotificationRequest(); // UpdateNotificationRequest | The data to update a notification
-    try {
-      Notification result = apiInstance.updateNotification(scope, code, id, updateNotificationRequest)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling NotificationsApi#updateNotification");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class NotificationsApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"notificationsUrl\": \"https://<your-domain>.lusid.com/notification\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
+        String scope = "scope_example"; // String | The scope that identifies a subscription
+        String code = "code_example"; // String | The code that identifies a subscription
+        String id = "id_example"; // String | The unique identifier of the notification
+        UpdateNotificationRequest updateNotificationRequest = new UpdateNotificationRequest(); // UpdateNotificationRequest | The data to update a notification
+        try {
+            Notification result = apiInstance.updateNotification(scope, code, id, updateNotificationRequest).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationsApi#updateNotification");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -357,14 +408,11 @@ public class Example {
 
 [**Notification**](Notification.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -373,4 +421,6 @@ public class Example {
 | **400** | The details of the input related failure |  -  |
 | **404** | No notification exists in current scope |  -  |
 | **0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

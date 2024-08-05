@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.991
+  version: 0.1.992
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1340,23 +1340,6 @@ paths:
                       body: "Event with message {{body.message}} and subject {{body.subject}}"
                       recipients:
                       - +447000000000
-                    createdAt: 2020-06-15T12:00:00.0000000+00:00
-                    userIdCreated: Example user
-                    modifiedAt: 2020-06-20T12:00:00.0000000+00:00
-                    userIdModified: Example user
-                    href: http://fbn-test/api/subscriptions/testScope/testCode/notifications/ExampleId
-                Api Request Notification:
-                  value:
-                    notificationId: ExampleId
-                    displayName: Example name
-                    description: Example description
-                    notificationType:
-                      type: ApiRequest
-                      httpMethod: Post
-                      pathAndQuery: "notification/api/{{jsonMessage.jsonField1}}/path?examplequery={{jsonMessage.jsonField2}}"
-                      content:
-                        Key: Value Example
-                        MessageKey: "{{body.message}}"
                     createdAt: 2020-06-15T12:00:00.0000000+00:00
                     userIdCreated: Example user
                     modifiedAt: 2020-06-20T12:00:00.0000000+00:00

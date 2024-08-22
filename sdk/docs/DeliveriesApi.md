@@ -46,11 +46,22 @@ public class DeliveriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // DeliveriesApi apiInstance = apiFactory.build(DeliveriesApi.class);
+
         DeliveriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(DeliveriesApi.class);
         String page = "page_example"; // String | The pagination token to use to continue listing delivery attempts. This value is returned from the previous call. When this field is supplied the filter field should not be supplied.
         Integer limit = 56; // Integer | The maximum number of delivery attempts to retrieve. Defaults to 200 if not specified.
         String filter = "filter_example"; // String | Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.  By default, we set this filter to only query for the last week's worth of Deliveries, however if a filter is explicitly set, this will be overriden.  An example filter to override the attempt time date might be 'AttemptTime gt 2023-08-25' for example
         try {
+            // uncomment the below to set overrides at the request level
+            // ResourceListOfDelivery result = apiInstance.listDeliveries(page, limit, filter).execute(opts);
+
             ResourceListOfDelivery result = apiInstance.listDeliveries(page, limit, filter).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

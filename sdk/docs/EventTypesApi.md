@@ -45,9 +45,20 @@ public class EventTypesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // EventTypesApi apiInstance = apiFactory.build(EventTypesApi.class);
+
         EventTypesApi apiInstance = ApiFactoryBuilder.build(fileName).build(EventTypesApi.class);
         String eventType = "eventType_example"; // String | The event type to retrieve schema for.
         try {
+            // uncomment the below to set overrides at the request level
+            // EventTypeSchema result = apiInstance.getEventType(eventType).execute(opts);
+
             EventTypeSchema result = apiInstance.getEventType(eventType).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -124,8 +135,19 @@ public class EventTypesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // EventTypesApi apiInstance = apiFactory.build(EventTypesApi.class);
+
         EventTypesApi apiInstance = ApiFactoryBuilder.build(fileName).build(EventTypesApi.class);
         try {
+            // uncomment the below to set overrides at the request level
+            // ResourceListOfEventTypeSchema result = apiInstance.listEventTypes().execute(opts);
+
             ResourceListOfEventTypeSchema result = apiInstance.listEventTypes().execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

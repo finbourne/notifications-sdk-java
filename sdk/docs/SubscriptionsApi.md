@@ -48,9 +48,20 @@ public class SubscriptionsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SubscriptionsApi apiInstance = apiFactory.build(SubscriptionsApi.class);
+
         SubscriptionsApi apiInstance = ApiFactoryBuilder.build(fileName).build(SubscriptionsApi.class);
         CreateSubscription createSubscription = new CreateSubscription(); // CreateSubscription | The data to create a subscription
         try {
+            // uncomment the below to set overrides at the request level
+            // Subscription result = apiInstance.createSubscription(createSubscription).execute(opts);
+
             Subscription result = apiInstance.createSubscription(createSubscription).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -126,10 +137,21 @@ public class SubscriptionsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SubscriptionsApi apiInstance = apiFactory.build(SubscriptionsApi.class);
+
         SubscriptionsApi apiInstance = ApiFactoryBuilder.build(fileName).build(SubscriptionsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         try {
+            // uncomment the below to set overrides at the request level
+            // apiInstance.deleteSubscription(scope, code).execute(opts);
+
             apiInstance.deleteSubscription(scope, code).execute();
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#deleteSubscription");
@@ -206,10 +228,21 @@ public class SubscriptionsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SubscriptionsApi apiInstance = apiFactory.build(SubscriptionsApi.class);
+
         SubscriptionsApi apiInstance = ApiFactoryBuilder.build(fileName).build(SubscriptionsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         try {
+            // uncomment the below to set overrides at the request level
+            // Subscription result = apiInstance.getSubscription(scope, code).execute(opts);
+
             Subscription result = apiInstance.getSubscription(scope, code).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -287,12 +320,23 @@ public class SubscriptionsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SubscriptionsApi apiInstance = apiFactory.build(SubscriptionsApi.class);
+
         SubscriptionsApi apiInstance = ApiFactoryBuilder.build(fileName).build(SubscriptionsApi.class);
         String filter = "filter_example"; // String | Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.
         String sortBy = "sortBy_example"; // String | Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>
         String page = "page_example"; // String | Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter field should not be supplied.
         Integer limit = 56; // Integer | The maximum number of subscriptions to retrieve.
         try {
+            // uncomment the below to set overrides at the request level
+            // ResourceListOfSubscription result = apiInstance.listSubscriptions(filter, sortBy, page, limit).execute(opts);
+
             ResourceListOfSubscription result = apiInstance.listSubscriptions(filter, sortBy, page, limit).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -371,11 +415,22 @@ public class SubscriptionsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SubscriptionsApi apiInstance = apiFactory.build(SubscriptionsApi.class);
+
         SubscriptionsApi apiInstance = ApiFactoryBuilder.build(fileName).build(SubscriptionsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         UpdateSubscription updateSubscription = new UpdateSubscription(); // UpdateSubscription | The data to update a subscription
         try {
+            // uncomment the below to set overrides at the request level
+            // Subscription result = apiInstance.updateSubscription(scope, code, updateSubscription).execute(opts);
+
             Subscription result = apiInstance.updateSubscription(scope, code, updateSubscription).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

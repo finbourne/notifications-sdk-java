@@ -18,6 +18,7 @@ import com.finbourne.notifications.Configuration;
 import com.finbourne.notifications.Pair;
 import com.finbourne.notifications.ProgressRequestBody;
 import com.finbourne.notifications.ProgressResponseBody;
+import com.finbourne.notifications.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -75,6 +76,10 @@ public class NotificationsApi {
     }
 
     private okhttp3.Call createNotificationCall(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback _callback) throws ApiException {
+        return createNotificationCall(scope, code, createNotificationRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call createNotificationCall(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -121,11 +126,11 @@ public class NotificationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createNotificationValidateBeforeCall(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createNotificationValidateBeforeCall(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling createNotification(Async)");
@@ -141,20 +146,34 @@ public class NotificationsApi {
             throw new ApiException("Missing the required parameter 'createNotificationRequest' when calling createNotification(Async)");
         }
 
-        return createNotificationCall(scope, code, createNotificationRequest, _callback);
+        return createNotificationCall(scope, code, createNotificationRequest, _callback, opts);
 
     }
 
 
     private ApiResponse<Notification> createNotificationWithHttpInfo(String scope, String code, CreateNotificationRequest createNotificationRequest) throws ApiException {
-        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, null);
+        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Notification> createNotificationWithHttpInfo(String scope, String code, CreateNotificationRequest createNotificationRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, null, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call createNotificationAsync(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback<Notification> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, _callback);
+        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call createNotificationAsync(String scope, String code, CreateNotificationRequest createNotificationRequest, final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = createNotificationValidateBeforeCall(scope, code, createNotificationRequest, _callback, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -206,6 +225,23 @@ public class NotificationsApi {
         }
 
         /**
+         * Execute createNotification request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Notification
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Notification execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Notification> localVarResp = createNotificationWithHttpInfo(scope, code, createNotificationRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute createNotification request with HTTP info returned
          * @return ApiResponse&lt;Notification&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -219,6 +255,22 @@ public class NotificationsApi {
          */
         public ApiResponse<Notification> executeWithHttpInfo() throws ApiException {
             return createNotificationWithHttpInfo(scope, code, createNotificationRequest);
+        }
+
+        /**
+         * Execute createNotification request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Notification&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Notification> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return createNotificationWithHttpInfo(scope, code, createNotificationRequest, opts);
         }
 
         /**
@@ -236,6 +288,23 @@ public class NotificationsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback) throws ApiException {
             return createNotificationAsync(scope, code, createNotificationRequest, _callback);
+        }
+
+        /**
+         * Execute createNotification request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+            return createNotificationAsync(scope, code, createNotificationRequest, _callback, opts);
         }
     }
 
@@ -258,6 +327,10 @@ public class NotificationsApi {
         return new APIcreateNotificationRequest(scope, code, createNotificationRequest);
     }
     private okhttp3.Call deleteNotificationCall(String scope, String code, String id, final ApiCallback _callback) throws ApiException {
+        return deleteNotificationCall(scope, code, id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call deleteNotificationCall(String scope, String code, String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -301,11 +374,11 @@ public class NotificationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteNotificationValidateBeforeCall(String scope, String code, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteNotificationValidateBeforeCall(String scope, String code, String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling deleteNotification(Async)");
@@ -321,19 +394,31 @@ public class NotificationsApi {
             throw new ApiException("Missing the required parameter 'id' when calling deleteNotification(Async)");
         }
 
-        return deleteNotificationCall(scope, code, id, _callback);
+        return deleteNotificationCall(scope, code, id, _callback, opts);
 
     }
 
 
     private ApiResponse<Void> deleteNotificationWithHttpInfo(String scope, String code, String id) throws ApiException {
-        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, null);
+        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, null, new ConfigurationOptions());
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    private ApiResponse<Void> deleteNotificationWithHttpInfo(String scope, String code, String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, null, opts);
         return localVarApiClient.execute(localVarCall);
     }
 
     private okhttp3.Call deleteNotificationAsync(String scope, String code, String id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, _callback);
+        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, _callback, new ConfigurationOptions());
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call deleteNotificationAsync(String scope, String code, String id, final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteNotificationValidateBeforeCall(scope, code, id, _callback, opts);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -384,6 +469,22 @@ public class NotificationsApi {
         }
 
         /**
+         * Execute deleteNotification request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute(ConfigurationOptions opts) throws ApiException {
+            deleteNotificationWithHttpInfo(scope, code, id, opts);
+        }
+
+        /**
          * Execute deleteNotification request with HTTP info returned
          * @return ApiResponse&lt;Void&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -398,6 +499,23 @@ public class NotificationsApi {
          */
         public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
             return deleteNotificationWithHttpInfo(scope, code, id);
+        }
+
+        /**
+         * Execute deleteNotification request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return deleteNotificationWithHttpInfo(scope, code, id, opts);
         }
 
         /**
@@ -416,6 +534,24 @@ public class NotificationsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
             return deleteNotificationAsync(scope, code, id, _callback);
+        }
+
+        /**
+         * Execute deleteNotification request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+            return deleteNotificationAsync(scope, code, id, _callback, opts);
         }
     }
 
@@ -439,6 +575,10 @@ public class NotificationsApi {
         return new APIdeleteNotificationRequest(scope, code, id);
     }
     private okhttp3.Call getNotificationCall(String scope, String code, String id, final ApiCallback _callback) throws ApiException {
+        return getNotificationCall(scope, code, id,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getNotificationCall(String scope, String code, String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -482,11 +622,11 @@ public class NotificationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getNotificationValidateBeforeCall(String scope, String code, String id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getNotificationValidateBeforeCall(String scope, String code, String id, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling getNotification(Async)");
@@ -502,20 +642,34 @@ public class NotificationsApi {
             throw new ApiException("Missing the required parameter 'id' when calling getNotification(Async)");
         }
 
-        return getNotificationCall(scope, code, id, _callback);
+        return getNotificationCall(scope, code, id, _callback, opts);
 
     }
 
 
     private ApiResponse<Notification> getNotificationWithHttpInfo(String scope, String code, String id) throws ApiException {
-        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, null);
+        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Notification> getNotificationWithHttpInfo(String scope, String code, String id, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, null, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getNotificationAsync(String scope, String code, String id, final ApiCallback<Notification> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, _callback);
+        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getNotificationAsync(String scope, String code, String id, final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getNotificationValidateBeforeCall(scope, code, id, _callback, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -569,6 +723,24 @@ public class NotificationsApi {
         }
 
         /**
+         * Execute getNotification request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Notification
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Notification execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Notification> localVarResp = getNotificationWithHttpInfo(scope, code, id, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getNotification request with HTTP info returned
          * @return ApiResponse&lt;Notification&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -583,6 +755,23 @@ public class NotificationsApi {
          */
         public ApiResponse<Notification> executeWithHttpInfo() throws ApiException {
             return getNotificationWithHttpInfo(scope, code, id);
+        }
+
+        /**
+         * Execute getNotification request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Notification&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Notification> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getNotificationWithHttpInfo(scope, code, id, opts);
         }
 
         /**
@@ -601,6 +790,24 @@ public class NotificationsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback) throws ApiException {
             return getNotificationAsync(scope, code, id, _callback);
+        }
+
+        /**
+         * Execute getNotification request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+            return getNotificationAsync(scope, code, id, _callback, opts);
         }
     }
 
@@ -624,6 +831,10 @@ public class NotificationsApi {
         return new APIgetNotificationRequest(scope, code, id);
     }
     private okhttp3.Call listNotificationsCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+        return listNotificationsCall(scope, code,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listNotificationsCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -666,11 +877,11 @@ public class NotificationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listNotificationsValidateBeforeCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listNotificationsValidateBeforeCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling listNotifications(Async)");
@@ -681,20 +892,34 @@ public class NotificationsApi {
             throw new ApiException("Missing the required parameter 'code' when calling listNotifications(Async)");
         }
 
-        return listNotificationsCall(scope, code, _callback);
+        return listNotificationsCall(scope, code, _callback, opts);
 
     }
 
 
     private ApiResponse<ResourceListOfNotification> listNotificationsWithHttpInfo(String scope, String code) throws ApiException {
-        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, null);
+        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfNotification>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ResourceListOfNotification> listNotificationsWithHttpInfo(String scope, String code, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, null, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfNotification>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listNotificationsAsync(String scope, String code, final ApiCallback<ResourceListOfNotification> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, _callback);
+        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfNotification>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listNotificationsAsync(String scope, String code, final ApiCallback<ResourceListOfNotification> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listNotificationsValidateBeforeCall(scope, code, _callback, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfNotification>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -746,6 +971,24 @@ public class NotificationsApi {
         }
 
         /**
+         * Execute listNotifications request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ResourceListOfNotification
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notifications exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ResourceListOfNotification execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ResourceListOfNotification> localVarResp = listNotificationsWithHttpInfo(scope, code, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute listNotifications request with HTTP info returned
          * @return ApiResponse&lt;ResourceListOfNotification&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -760,6 +1003,23 @@ public class NotificationsApi {
          */
         public ApiResponse<ResourceListOfNotification> executeWithHttpInfo() throws ApiException {
             return listNotificationsWithHttpInfo(scope, code);
+        }
+
+        /**
+         * Execute listNotifications request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ResourceListOfNotification&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notifications exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ResourceListOfNotification> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listNotificationsWithHttpInfo(scope, code, opts);
         }
 
         /**
@@ -778,6 +1038,24 @@ public class NotificationsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfNotification> _callback) throws ApiException {
             return listNotificationsAsync(scope, code, _callback);
+        }
+
+        /**
+         * Execute listNotifications request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notifications exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfNotification> _callback, ConfigurationOptions opts) throws ApiException {
+            return listNotificationsAsync(scope, code, _callback, opts);
         }
     }
 
@@ -800,6 +1078,10 @@ public class NotificationsApi {
         return new APIlistNotificationsRequest(scope, code);
     }
     private okhttp3.Call updateNotificationCall(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback _callback) throws ApiException {
+        return updateNotificationCall(scope, code, id, updateNotificationRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call updateNotificationCall(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -847,11 +1129,11 @@ public class NotificationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateNotificationValidateBeforeCall(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateNotificationValidateBeforeCall(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling updateNotification(Async)");
@@ -872,20 +1154,34 @@ public class NotificationsApi {
             throw new ApiException("Missing the required parameter 'updateNotificationRequest' when calling updateNotification(Async)");
         }
 
-        return updateNotificationCall(scope, code, id, updateNotificationRequest, _callback);
+        return updateNotificationCall(scope, code, id, updateNotificationRequest, _callback, opts);
 
     }
 
 
     private ApiResponse<Notification> updateNotificationWithHttpInfo(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, null);
+        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Notification> updateNotificationWithHttpInfo(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, null, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call updateNotificationAsync(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback<Notification> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, _callback);
+        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Notification>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call updateNotificationAsync(String scope, String code, String id, UpdateNotificationRequest updateNotificationRequest, final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = updateNotificationValidateBeforeCall(scope, code, id, updateNotificationRequest, _callback, opts);
         Type localVarReturnType = new TypeToken<Notification>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -941,6 +1237,24 @@ public class NotificationsApi {
         }
 
         /**
+         * Execute updateNotification request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Notification
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Notification execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Notification> localVarResp = updateNotificationWithHttpInfo(scope, code, id, updateNotificationRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute updateNotification request with HTTP info returned
          * @return ApiResponse&lt;Notification&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -955,6 +1269,23 @@ public class NotificationsApi {
          */
         public ApiResponse<Notification> executeWithHttpInfo() throws ApiException {
             return updateNotificationWithHttpInfo(scope, code, id, updateNotificationRequest);
+        }
+
+        /**
+         * Execute updateNotification request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Notification&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Notification> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return updateNotificationWithHttpInfo(scope, code, id, updateNotificationRequest, opts);
         }
 
         /**
@@ -973,6 +1304,24 @@ public class NotificationsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback) throws ApiException {
             return updateNotificationAsync(scope, code, id, updateNotificationRequest, _callback);
+        }
+
+        /**
+         * Execute updateNotification request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No notification exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Notification> _callback, ConfigurationOptions opts) throws ApiException {
+            return updateNotificationAsync(scope, code, id, updateNotificationRequest, _callback, opts);
         }
     }
 

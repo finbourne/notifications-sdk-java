@@ -18,6 +18,7 @@ import com.finbourne.notifications.Configuration;
 import com.finbourne.notifications.Pair;
 import com.finbourne.notifications.ProgressRequestBody;
 import com.finbourne.notifications.ProgressResponseBody;
+import com.finbourne.notifications.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -72,6 +73,10 @@ public class DeliveriesApi {
     }
 
     private okhttp3.Call listDeliveriesCall(String page, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
+        return listDeliveriesCall(page, limit, filter,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listDeliveriesCall(String page, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -124,25 +129,39 @@ public class DeliveriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listDeliveriesValidateBeforeCall(String page, Integer limit, String filter, final ApiCallback _callback) throws ApiException {
-        return listDeliveriesCall(page, limit, filter, _callback);
+    private okhttp3.Call listDeliveriesValidateBeforeCall(String page, Integer limit, String filter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listDeliveriesCall(page, limit, filter, _callback, opts);
 
     }
 
 
     private ApiResponse<ResourceListOfDelivery> listDeliveriesWithHttpInfo(String page, Integer limit, String filter) throws ApiException {
-        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, null);
+        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfDelivery>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ResourceListOfDelivery> listDeliveriesWithHttpInfo(String page, Integer limit, String filter, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, null, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfDelivery>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listDeliveriesAsync(String page, Integer limit, String filter, final ApiCallback<ResourceListOfDelivery> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, _callback);
+        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfDelivery>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listDeliveriesAsync(String page, Integer limit, String filter, final ApiCallback<ResourceListOfDelivery> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listDeliveriesValidateBeforeCall(page, limit, filter, _callback, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfDelivery>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -223,6 +242,24 @@ public class DeliveriesApi {
         }
 
         /**
+         * Execute listDeliveries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ResourceListOfDelivery
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No deliveries exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ResourceListOfDelivery execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ResourceListOfDelivery> localVarResp = listDeliveriesWithHttpInfo(page, limit, filter, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute listDeliveries request with HTTP info returned
          * @return ApiResponse&lt;ResourceListOfDelivery&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -237,6 +274,23 @@ public class DeliveriesApi {
          */
         public ApiResponse<ResourceListOfDelivery> executeWithHttpInfo() throws ApiException {
             return listDeliveriesWithHttpInfo(page, limit, filter);
+        }
+
+        /**
+         * Execute listDeliveries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ResourceListOfDelivery&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No deliveries exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ResourceListOfDelivery> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listDeliveriesWithHttpInfo(page, limit, filter, opts);
         }
 
         /**
@@ -255,6 +309,24 @@ public class DeliveriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfDelivery> _callback) throws ApiException {
             return listDeliveriesAsync(page, limit, filter, _callback);
+        }
+
+        /**
+         * Execute listDeliveries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No deliveries exists with the provided filter(s) </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfDelivery> _callback, ConfigurationOptions opts) throws ApiException {
+            return listDeliveriesAsync(page, limit, filter, _callback, opts);
         }
     }
 

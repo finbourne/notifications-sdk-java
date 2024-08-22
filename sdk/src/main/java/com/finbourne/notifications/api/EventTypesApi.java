@@ -18,6 +18,7 @@ import com.finbourne.notifications.Configuration;
 import com.finbourne.notifications.Pair;
 import com.finbourne.notifications.ProgressRequestBody;
 import com.finbourne.notifications.ProgressResponseBody;
+import com.finbourne.notifications.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -73,6 +74,10 @@ public class EventTypesApi {
     }
 
     private okhttp3.Call getEventTypeCall(String eventType, final ApiCallback _callback) throws ApiException {
+        return getEventTypeCall(eventType,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getEventTypeCall(String eventType, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -114,30 +119,44 @@ public class EventTypesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEventTypeValidateBeforeCall(String eventType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getEventTypeValidateBeforeCall(String eventType, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'eventType' is set
         if (eventType == null) {
             throw new ApiException("Missing the required parameter 'eventType' when calling getEventType(Async)");
         }
 
-        return getEventTypeCall(eventType, _callback);
+        return getEventTypeCall(eventType, _callback, opts);
 
     }
 
 
     private ApiResponse<EventTypeSchema> getEventTypeWithHttpInfo(String eventType) throws ApiException {
-        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, null);
+        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<EventTypeSchema>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<EventTypeSchema> getEventTypeWithHttpInfo(String eventType, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, null, opts);
         Type localVarReturnType = new TypeToken<EventTypeSchema>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getEventTypeAsync(String eventType, final ApiCallback<EventTypeSchema> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, _callback);
+        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<EventTypeSchema>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getEventTypeAsync(String eventType, final ApiCallback<EventTypeSchema> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getEventTypeValidateBeforeCall(eventType, _callback, opts);
         Type localVarReturnType = new TypeToken<EventTypeSchema>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -187,6 +206,24 @@ public class EventTypesApi {
         }
 
         /**
+         * Execute getEventType request. Use any specified configuration options to override any other configuration for this request only.
+         * @return EventTypeSchema
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event type exists with the specified type </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public EventTypeSchema execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<EventTypeSchema> localVarResp = getEventTypeWithHttpInfo(eventType, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getEventType request with HTTP info returned
          * @return ApiResponse&lt;EventTypeSchema&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -201,6 +238,23 @@ public class EventTypesApi {
          */
         public ApiResponse<EventTypeSchema> executeWithHttpInfo() throws ApiException {
             return getEventTypeWithHttpInfo(eventType);
+        }
+
+        /**
+         * Execute getEventType request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;EventTypeSchema&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event type exists with the specified type </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<EventTypeSchema> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getEventTypeWithHttpInfo(eventType, opts);
         }
 
         /**
@@ -219,6 +273,24 @@ public class EventTypesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<EventTypeSchema> _callback) throws ApiException {
             return getEventTypeAsync(eventType, _callback);
+        }
+
+        /**
+         * Execute getEventType request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event type exists with the specified type </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<EventTypeSchema> _callback, ConfigurationOptions opts) throws ApiException {
+            return getEventTypeAsync(eventType, _callback, opts);
         }
     }
 
@@ -240,6 +312,10 @@ public class EventTypesApi {
         return new APIgetEventTypeRequest(eventType);
     }
     private okhttp3.Call listEventTypesCall(final ApiCallback _callback) throws ApiException {
+        return listEventTypesCall( _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listEventTypesCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -280,25 +356,39 @@ public class EventTypesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listEventTypesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return listEventTypesCall(_callback);
+    private okhttp3.Call listEventTypesValidateBeforeCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listEventTypesCall(_callback, opts);
 
     }
 
 
     private ApiResponse<ResourceListOfEventTypeSchema> listEventTypesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(null);
+        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfEventTypeSchema>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ResourceListOfEventTypeSchema> listEventTypesWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(null, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfEventTypeSchema>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listEventTypesAsync(final ApiCallback<ResourceListOfEventTypeSchema> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(_callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfEventTypeSchema>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listEventTypesAsync(final ApiCallback<ResourceListOfEventTypeSchema> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listEventTypesValidateBeforeCall(_callback, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfEventTypeSchema>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -344,6 +434,23 @@ public class EventTypesApi {
         }
 
         /**
+         * Execute listEventTypes request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ResourceListOfEventTypeSchema
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event types found </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ResourceListOfEventTypeSchema execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ResourceListOfEventTypeSchema> localVarResp = listEventTypesWithHttpInfo(opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute listEventTypes request with HTTP info returned
          * @return ApiResponse&lt;ResourceListOfEventTypeSchema&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -357,6 +464,22 @@ public class EventTypesApi {
          */
         public ApiResponse<ResourceListOfEventTypeSchema> executeWithHttpInfo() throws ApiException {
             return listEventTypesWithHttpInfo();
+        }
+
+        /**
+         * Execute listEventTypes request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ResourceListOfEventTypeSchema&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event types found </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ResourceListOfEventTypeSchema> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listEventTypesWithHttpInfo(opts);
         }
 
         /**
@@ -374,6 +497,23 @@ public class EventTypesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfEventTypeSchema> _callback) throws ApiException {
             return listEventTypesAsync(_callback);
+        }
+
+        /**
+         * Execute listEventTypes request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No event types found </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfEventTypeSchema> _callback, ConfigurationOptions opts) throws ApiException {
+            return listEventTypesAsync(_callback, opts);
         }
     }
 

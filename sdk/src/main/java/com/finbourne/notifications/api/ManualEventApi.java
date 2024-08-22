@@ -18,6 +18,7 @@ import com.finbourne.notifications.Configuration;
 import com.finbourne.notifications.Pair;
 import com.finbourne.notifications.ProgressRequestBody;
 import com.finbourne.notifications.ProgressResponseBody;
+import com.finbourne.notifications.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -73,6 +74,10 @@ public class ManualEventApi {
     }
 
     private okhttp3.Call triggerManualEventCall(ManualEventRequest manualEventRequest, final ApiCallback _callback) throws ApiException {
+        return triggerManualEventCall(manualEventRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call triggerManualEventCall(ManualEventRequest manualEventRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,30 +122,44 @@ public class ManualEventApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call triggerManualEventValidateBeforeCall(ManualEventRequest manualEventRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call triggerManualEventValidateBeforeCall(ManualEventRequest manualEventRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'manualEventRequest' is set
         if (manualEventRequest == null) {
             throw new ApiException("Missing the required parameter 'manualEventRequest' when calling triggerManualEvent(Async)");
         }
 
-        return triggerManualEventCall(manualEventRequest, _callback);
+        return triggerManualEventCall(manualEventRequest, _callback, opts);
 
     }
 
 
     private ApiResponse<ManualEvent> triggerManualEventWithHttpInfo(ManualEventRequest manualEventRequest) throws ApiException {
-        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, null);
+        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ManualEvent>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ManualEvent> triggerManualEventWithHttpInfo(ManualEventRequest manualEventRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, null, opts);
         Type localVarReturnType = new TypeToken<ManualEvent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call triggerManualEventAsync(ManualEventRequest manualEventRequest, final ApiCallback<ManualEvent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, _callback);
+        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ManualEvent>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call triggerManualEventAsync(ManualEventRequest manualEventRequest, final ApiCallback<ManualEvent> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = triggerManualEventValidateBeforeCall(manualEventRequest, _callback, opts);
         Type localVarReturnType = new TypeToken<ManualEvent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -188,6 +207,23 @@ public class ManualEventApi {
         }
 
         /**
+         * Execute triggerManualEvent request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ManualEvent
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ManualEvent execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ManualEvent> localVarResp = triggerManualEventWithHttpInfo(manualEventRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute triggerManualEvent request with HTTP info returned
          * @return ApiResponse&lt;ManualEvent&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -201,6 +237,22 @@ public class ManualEventApi {
          */
         public ApiResponse<ManualEvent> executeWithHttpInfo() throws ApiException {
             return triggerManualEventWithHttpInfo(manualEventRequest);
+        }
+
+        /**
+         * Execute triggerManualEvent request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ManualEvent&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ManualEvent> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return triggerManualEventWithHttpInfo(manualEventRequest, opts);
         }
 
         /**
@@ -218,6 +270,23 @@ public class ManualEventApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ManualEvent> _callback) throws ApiException {
             return triggerManualEventAsync(manualEventRequest, _callback);
+        }
+
+        /**
+         * Execute triggerManualEvent request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ManualEvent> _callback, ConfigurationOptions opts) throws ApiException {
+            return triggerManualEventAsync(manualEventRequest, _callback, opts);
         }
     }
 

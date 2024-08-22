@@ -48,11 +48,22 @@ public class NotificationsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // NotificationsApi apiInstance = apiFactory.build(NotificationsApi.class);
+
         NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         CreateNotificationRequest createNotificationRequest = new CreateNotificationRequest(); // CreateNotificationRequest | The data to create a notification
         try {
+            // uncomment the below to set overrides at the request level
+            // Notification result = apiInstance.createNotification(scope, code, createNotificationRequest).execute(opts);
+
             Notification result = apiInstance.createNotification(scope, code, createNotificationRequest).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -130,11 +141,22 @@ public class NotificationsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // NotificationsApi apiInstance = apiFactory.build(NotificationsApi.class);
+
         NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         String id = "id_example"; // String | The unique identifier of the notification
         try {
+            // uncomment the below to set overrides at the request level
+            // apiInstance.deleteNotification(scope, code, id).execute(opts);
+
             apiInstance.deleteNotification(scope, code, id).execute();
         } catch (ApiException e) {
             System.err.println("Exception when calling NotificationsApi#deleteNotification");
@@ -212,11 +234,22 @@ public class NotificationsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // NotificationsApi apiInstance = apiFactory.build(NotificationsApi.class);
+
         NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         String id = "id_example"; // String | The unique identifier of the notification
         try {
+            // uncomment the below to set overrides at the request level
+            // Notification result = apiInstance.getNotification(scope, code, id).execute(opts);
+
             Notification result = apiInstance.getNotification(scope, code, id).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -295,10 +328,21 @@ public class NotificationsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // NotificationsApi apiInstance = apiFactory.build(NotificationsApi.class);
+
         NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         try {
+            // uncomment the below to set overrides at the request level
+            // ResourceListOfNotification result = apiInstance.listNotifications(scope, code).execute(opts);
+
             ResourceListOfNotification result = apiInstance.listNotifications(scope, code).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -376,12 +420,23 @@ public class NotificationsApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // NotificationsApi apiInstance = apiFactory.build(NotificationsApi.class);
+
         NotificationsApi apiInstance = ApiFactoryBuilder.build(fileName).build(NotificationsApi.class);
         String scope = "scope_example"; // String | The scope that identifies a subscription
         String code = "code_example"; // String | The code that identifies a subscription
         String id = "id_example"; // String | The unique identifier of the notification
         UpdateNotificationRequest updateNotificationRequest = new UpdateNotificationRequest(); // UpdateNotificationRequest | The data to update a notification
         try {
+            // uncomment the below to set overrides at the request level
+            // Notification result = apiInstance.updateNotification(scope, code, id, updateNotificationRequest).execute(opts);
+
             Notification result = apiInstance.updateNotification(scope, code, id, updateNotificationRequest).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

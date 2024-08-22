@@ -18,6 +18,7 @@ import com.finbourne.notifications.Configuration;
 import com.finbourne.notifications.Pair;
 import com.finbourne.notifications.ProgressRequestBody;
 import com.finbourne.notifications.ProgressResponseBody;
+import com.finbourne.notifications.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -75,6 +76,10 @@ public class SubscriptionsApi {
     }
 
     private okhttp3.Call createSubscriptionCall(CreateSubscription createSubscription, final ApiCallback _callback) throws ApiException {
+        return createSubscriptionCall(createSubscription,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call createSubscriptionCall(CreateSubscription createSubscription, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -119,30 +124,44 @@ public class SubscriptionsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createSubscriptionValidateBeforeCall(CreateSubscription createSubscription, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createSubscriptionValidateBeforeCall(CreateSubscription createSubscription, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'createSubscription' is set
         if (createSubscription == null) {
             throw new ApiException("Missing the required parameter 'createSubscription' when calling createSubscription(Async)");
         }
 
-        return createSubscriptionCall(createSubscription, _callback);
+        return createSubscriptionCall(createSubscription, _callback, opts);
 
     }
 
 
     private ApiResponse<Subscription> createSubscriptionWithHttpInfo(CreateSubscription createSubscription) throws ApiException {
-        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, null);
+        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Subscription> createSubscriptionWithHttpInfo(CreateSubscription createSubscription, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, null, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call createSubscriptionAsync(CreateSubscription createSubscription, final ApiCallback<Subscription> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, _callback);
+        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call createSubscriptionAsync(CreateSubscription createSubscription, final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = createSubscriptionValidateBeforeCall(createSubscription, _callback, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -190,6 +209,23 @@ public class SubscriptionsApi {
         }
 
         /**
+         * Execute createSubscription request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Subscription
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Subscription execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Subscription> localVarResp = createSubscriptionWithHttpInfo(createSubscription, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute createSubscription request with HTTP info returned
          * @return ApiResponse&lt;Subscription&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -203,6 +239,22 @@ public class SubscriptionsApi {
          */
         public ApiResponse<Subscription> executeWithHttpInfo() throws ApiException {
             return createSubscriptionWithHttpInfo(createSubscription);
+        }
+
+        /**
+         * Execute createSubscription request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Subscription&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Subscription> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return createSubscriptionWithHttpInfo(createSubscription, opts);
         }
 
         /**
@@ -220,6 +272,23 @@ public class SubscriptionsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback) throws ApiException {
             return createSubscriptionAsync(createSubscription, _callback);
+        }
+
+        /**
+         * Execute createSubscription request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+            return createSubscriptionAsync(createSubscription, _callback, opts);
         }
     }
 
@@ -240,6 +309,10 @@ public class SubscriptionsApi {
         return new APIcreateSubscriptionRequest(createSubscription);
     }
     private okhttp3.Call deleteSubscriptionCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+        return deleteSubscriptionCall(scope, code,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call deleteSubscriptionCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -282,11 +355,11 @@ public class SubscriptionsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteSubscriptionValidateBeforeCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteSubscriptionValidateBeforeCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling deleteSubscription(Async)");
@@ -297,19 +370,31 @@ public class SubscriptionsApi {
             throw new ApiException("Missing the required parameter 'code' when calling deleteSubscription(Async)");
         }
 
-        return deleteSubscriptionCall(scope, code, _callback);
+        return deleteSubscriptionCall(scope, code, _callback, opts);
 
     }
 
 
     private ApiResponse<Void> deleteSubscriptionWithHttpInfo(String scope, String code) throws ApiException {
-        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, null);
+        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, null, new ConfigurationOptions());
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    private ApiResponse<Void> deleteSubscriptionWithHttpInfo(String scope, String code, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, null, opts);
         return localVarApiClient.execute(localVarCall);
     }
 
     private okhttp3.Call deleteSubscriptionAsync(String scope, String code, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, _callback);
+        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, _callback, new ConfigurationOptions());
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call deleteSubscriptionAsync(String scope, String code, final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteSubscriptionValidateBeforeCall(scope, code, _callback, opts);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -358,6 +443,22 @@ public class SubscriptionsApi {
         }
 
         /**
+         * Execute deleteSubscription request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute(ConfigurationOptions opts) throws ApiException {
+            deleteSubscriptionWithHttpInfo(scope, code, opts);
+        }
+
+        /**
          * Execute deleteSubscription request with HTTP info returned
          * @return ApiResponse&lt;Void&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -372,6 +473,23 @@ public class SubscriptionsApi {
          */
         public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
             return deleteSubscriptionWithHttpInfo(scope, code);
+        }
+
+        /**
+         * Execute deleteSubscription request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return deleteSubscriptionWithHttpInfo(scope, code, opts);
         }
 
         /**
@@ -390,6 +508,24 @@ public class SubscriptionsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
             return deleteSubscriptionAsync(scope, code, _callback);
+        }
+
+        /**
+         * Execute deleteSubscription request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback, ConfigurationOptions opts) throws ApiException {
+            return deleteSubscriptionAsync(scope, code, _callback, opts);
         }
     }
 
@@ -412,6 +548,10 @@ public class SubscriptionsApi {
         return new APIdeleteSubscriptionRequest(scope, code);
     }
     private okhttp3.Call getSubscriptionCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+        return getSubscriptionCall(scope, code,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getSubscriptionCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -454,11 +594,11 @@ public class SubscriptionsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSubscriptionValidateBeforeCall(String scope, String code, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSubscriptionValidateBeforeCall(String scope, String code, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling getSubscription(Async)");
@@ -469,20 +609,34 @@ public class SubscriptionsApi {
             throw new ApiException("Missing the required parameter 'code' when calling getSubscription(Async)");
         }
 
-        return getSubscriptionCall(scope, code, _callback);
+        return getSubscriptionCall(scope, code, _callback, opts);
 
     }
 
 
     private ApiResponse<Subscription> getSubscriptionWithHttpInfo(String scope, String code) throws ApiException {
-        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, null);
+        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Subscription> getSubscriptionWithHttpInfo(String scope, String code, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, null, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getSubscriptionAsync(String scope, String code, final ApiCallback<Subscription> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, _callback);
+        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getSubscriptionAsync(String scope, String code, final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getSubscriptionValidateBeforeCall(scope, code, _callback, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -534,6 +688,24 @@ public class SubscriptionsApi {
         }
 
         /**
+         * Execute getSubscription request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Subscription
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Subscription execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Subscription> localVarResp = getSubscriptionWithHttpInfo(scope, code, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getSubscription request with HTTP info returned
          * @return ApiResponse&lt;Subscription&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -548,6 +720,23 @@ public class SubscriptionsApi {
          */
         public ApiResponse<Subscription> executeWithHttpInfo() throws ApiException {
             return getSubscriptionWithHttpInfo(scope, code);
+        }
+
+        /**
+         * Execute getSubscription request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Subscription&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Subscription> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getSubscriptionWithHttpInfo(scope, code, opts);
         }
 
         /**
@@ -566,6 +755,24 @@ public class SubscriptionsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback) throws ApiException {
             return getSubscriptionAsync(scope, code, _callback);
+        }
+
+        /**
+         * Execute getSubscription request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+            return getSubscriptionAsync(scope, code, _callback, opts);
         }
     }
 
@@ -588,6 +795,10 @@ public class SubscriptionsApi {
         return new APIgetSubscriptionRequest(scope, code);
     }
     private okhttp3.Call listSubscriptionsCall(String filter, String sortBy, String page, Integer limit, final ApiCallback _callback) throws ApiException {
+        return listSubscriptionsCall(filter, sortBy, page, limit,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listSubscriptionsCall(String filter, String sortBy, String page, Integer limit, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -644,25 +855,39 @@ public class SubscriptionsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listSubscriptionsValidateBeforeCall(String filter, String sortBy, String page, Integer limit, final ApiCallback _callback) throws ApiException {
-        return listSubscriptionsCall(filter, sortBy, page, limit, _callback);
+    private okhttp3.Call listSubscriptionsValidateBeforeCall(String filter, String sortBy, String page, Integer limit, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listSubscriptionsCall(filter, sortBy, page, limit, _callback, opts);
 
     }
 
 
     private ApiResponse<ResourceListOfSubscription> listSubscriptionsWithHttpInfo(String filter, String sortBy, String page, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, null);
+        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfSubscription>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ResourceListOfSubscription> listSubscriptionsWithHttpInfo(String filter, String sortBy, String page, Integer limit, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, null, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfSubscription>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listSubscriptionsAsync(String filter, String sortBy, String page, Integer limit, final ApiCallback<ResourceListOfSubscription> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, _callback);
+        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfSubscription>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listSubscriptionsAsync(String filter, String sortBy, String page, Integer limit, final ApiCallback<ResourceListOfSubscription> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listSubscriptionsValidateBeforeCall(filter, sortBy, page, limit, _callback, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfSubscription>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -752,6 +977,23 @@ public class SubscriptionsApi {
         }
 
         /**
+         * Execute listSubscriptions request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ResourceListOfSubscription
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ResourceListOfSubscription execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ResourceListOfSubscription> localVarResp = listSubscriptionsWithHttpInfo(filter, sortBy, page, limit, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute listSubscriptions request with HTTP info returned
          * @return ApiResponse&lt;ResourceListOfSubscription&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -765,6 +1007,22 @@ public class SubscriptionsApi {
          */
         public ApiResponse<ResourceListOfSubscription> executeWithHttpInfo() throws ApiException {
             return listSubscriptionsWithHttpInfo(filter, sortBy, page, limit);
+        }
+
+        /**
+         * Execute listSubscriptions request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ResourceListOfSubscription&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ResourceListOfSubscription> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listSubscriptionsWithHttpInfo(filter, sortBy, page, limit, opts);
         }
 
         /**
@@ -782,6 +1040,23 @@ public class SubscriptionsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfSubscription> _callback) throws ApiException {
             return listSubscriptionsAsync(filter, sortBy, page, limit, _callback);
+        }
+
+        /**
+         * Execute listSubscriptions request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfSubscription> _callback, ConfigurationOptions opts) throws ApiException {
+            return listSubscriptionsAsync(filter, sortBy, page, limit, _callback, opts);
         }
     }
 
@@ -801,6 +1076,10 @@ public class SubscriptionsApi {
         return new APIlistSubscriptionsRequest();
     }
     private okhttp3.Call updateSubscriptionCall(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback _callback) throws ApiException {
+        return updateSubscriptionCall(scope, code, updateSubscription,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call updateSubscriptionCall(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -847,11 +1126,11 @@ public class SubscriptionsApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateSubscriptionValidateBeforeCall(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSubscriptionValidateBeforeCall(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'scope' is set
         if (scope == null) {
             throw new ApiException("Missing the required parameter 'scope' when calling updateSubscription(Async)");
@@ -867,20 +1146,34 @@ public class SubscriptionsApi {
             throw new ApiException("Missing the required parameter 'updateSubscription' when calling updateSubscription(Async)");
         }
 
-        return updateSubscriptionCall(scope, code, updateSubscription, _callback);
+        return updateSubscriptionCall(scope, code, updateSubscription, _callback, opts);
 
     }
 
 
     private ApiResponse<Subscription> updateSubscriptionWithHttpInfo(String scope, String code, UpdateSubscription updateSubscription) throws ApiException {
-        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, null);
+        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Subscription> updateSubscriptionWithHttpInfo(String scope, String code, UpdateSubscription updateSubscription, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, null, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call updateSubscriptionAsync(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback<Subscription> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, _callback);
+        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call updateSubscriptionAsync(String scope, String code, UpdateSubscription updateSubscription, final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSubscriptionValidateBeforeCall(scope, code, updateSubscription, _callback, opts);
         Type localVarReturnType = new TypeToken<Subscription>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -934,6 +1227,24 @@ public class SubscriptionsApi {
         }
 
         /**
+         * Execute updateSubscription request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Subscription
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public Subscription execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Subscription> localVarResp = updateSubscriptionWithHttpInfo(scope, code, updateSubscription, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute updateSubscription request with HTTP info returned
          * @return ApiResponse&lt;Subscription&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -948,6 +1259,23 @@ public class SubscriptionsApi {
          */
         public ApiResponse<Subscription> executeWithHttpInfo() throws ApiException {
             return updateSubscriptionWithHttpInfo(scope, code, updateSubscription);
+        }
+
+        /**
+         * Execute updateSubscription request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Subscription&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Subscription> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return updateSubscriptionWithHttpInfo(scope, code, updateSubscription, opts);
         }
 
         /**
@@ -966,6 +1294,24 @@ public class SubscriptionsApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback) throws ApiException {
             return updateSubscriptionAsync(scope, code, updateSubscription, _callback);
+        }
+
+        /**
+         * Execute updateSubscription request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> The details of the input related failure </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No subscription exists in current scope </td><td>  -  </td></tr>
+            <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Subscription> _callback, ConfigurationOptions opts) throws ApiException {
+            return updateSubscriptionAsync(scope, code, updateSubscription, _callback, opts);
         }
     }
 

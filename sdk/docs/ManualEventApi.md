@@ -44,9 +44,20 @@ public class ManualEventApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // ManualEventApi apiInstance = apiFactory.build(ManualEventApi.class);
+
         ManualEventApi apiInstance = ApiFactoryBuilder.build(fileName).build(ManualEventApi.class);
         ManualEventRequest manualEventRequest = new ManualEventRequest(); // ManualEventRequest | The data required to trigger a manual event.
         try {
+            // uncomment the below to set overrides at the request level
+            // ManualEvent result = apiInstance.triggerManualEvent(manualEventRequest).execute(opts);
+
             ManualEvent result = apiInstance.triggerManualEvent(manualEventRequest).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

@@ -4,35 +4,105 @@ info:
     email: info@finbourne.com
     name: FINBOURNE Technology
     url: https://www.finbourne.com
-  description: "### Introduction \n\n# Error Codes\n\n | Code|Name|Description |\n\
-    | ---|---|--- |\n| <a name=\"-1\">-1</a>|Unknown error|An unexpected error was\
-    \ encountered on our side. |\n| <a name=\"144\">144</a>|Duplicate In Parameter\
-    \ Set| |\n| <a name=\"151\">151</a>|Invalid Parameter Value| |\n| <a name=\"156\"\
-    >156</a>|Concurrency Conflict Failure| |\n| <a name=\"689\">689</a>|The supplied\
-    \ pagination token is invalid| |\n| <a name=\"692\">692</a>|This endpoint does\
-    \ not support impersonation| |\n| <a name=\"711\">711</a>|Subscription already\
-    \ exists| |\n| <a name=\"712\">712</a>|Could not find subscription| |\n| <a name=\"\
-    713\">713</a>|Notification already exists| |\n| <a name=\"714\">714</a>|Could\
-    \ not find notification| |\n| <a name=\"734\">734</a>|Email address is incorrectly\
-    \ formatted.| |\n| <a name=\"740\">740</a>|Event type was missing| |\n| <a name=\"\
-    741\">741</a>|Unknown event type| |\n| <a name=\"747\">747</a>|Duplicate sort\
-    \ field used.| |\n| <a name=\"748\">748</a>|Defined template attributes failure.|\
-    \ |\n| <a name=\"749\">749</a>|Operation on wrong notification type.| |\n| <a\
-    \ name=\"759\">759</a>|Invalid configuration item path| |\n| <a name=\"760\">760</a>|Invalid\
-    \ configuration set type| |\n| <a name=\"761\">761</a>|Invalid webhook HTTP content|\
-    \ |\n| <a name=\"762\">762</a>|A failure occured when making a webhook request|\
-    \ |\n| <a name=\"776\">776</a>|Delivery already exists| |\n| <a name=\"777\">777</a>|Delivery\
-    \ not found| |\n| <a name=\"779\">779</a>|Invalid message content| |\n| <a name=\"\
-    794\">794</a>|Cannot modify the existing subscription.| |\n| <a name=\"871\">871</a>|The\
-    \ specified impersonated user does not exist| |\n| <a name=\"884\">884</a>|Missing\
-    \ licence to access feature.| |\n| <a name=\"885\">885</a>|Error sending to AWS\
-    \ SQS.| |\n"
+  description: |
+    The Notification Service allows you to subscribe to system events and receive notifications via email, SMS, AWS SQS, or webhooks, enabling automated responses and alerts for various operational activities within a LUSID environment.
+
+    ### Error Codes
+
+    | Code|Name|Description |
+    | ---|---|--- |
+    | <a name="-1">-1</a>|Unknown error|An unexpected error was encountered on our side. |
+    | <a name="144">144</a>|Duplicate In Parameter Set| |
+    | <a name="151">151</a>|Invalid Parameter Value| |
+    | <a name="156">156</a>|Concurrency Conflict Failure| |
+    | <a name="689">689</a>|The supplied pagination token is invalid| |
+    | <a name="692">692</a>|This endpoint does not support impersonation| |
+    | <a name="711">711</a>|Subscription already exists| |
+    | <a name="712">712</a>|Could not find subscription| |
+    | <a name="713">713</a>|Notification already exists| |
+    | <a name="714">714</a>|Could not find notification| |
+    | <a name="734">734</a>|Email address is incorrectly formatted.| |
+    | <a name="740">740</a>|Event type was missing| |
+    | <a name="741">741</a>|Unknown event type| |
+    | <a name="747">747</a>|Duplicate sort field used.| |
+    | <a name="748">748</a>|Defined template attributes failure.| |
+    | <a name="749">749</a>|Operation on wrong notification type.| |
+    | <a name="759">759</a>|Invalid configuration item path| |
+    | <a name="760">760</a>|Invalid configuration set type| |
+    | <a name="761">761</a>|Invalid webhook HTTP content| |
+    | <a name="762">762</a>|A failure occured when making a webhook request| |
+    | <a name="776">776</a>|Delivery already exists| |
+    | <a name="777">777</a>|Delivery not found| |
+    | <a name="779">779</a>|Invalid message content| |
+    | <a name="794">794</a>|Cannot modify the existing subscription.| |
+    | <a name="871">871</a>|The specified impersonated user does not exist| |
+    | <a name="884">884</a>|Missing licence to access feature.| |
+    | <a name="885">885</a>|Error sending to AWS SQS.| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1057
+  version: 0.1.1063
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
+  x-fbn-error-codes:
+    "-1":
+      title: Unknown error
+      description: An unexpected error was encountered on our side.
+    "144":
+      title: Duplicate In Parameter Set
+    "151":
+      title: Invalid Parameter Value
+    "156":
+      title: Concurrency Conflict Failure
+    "689":
+      title: The supplied pagination token is invalid
+    "692":
+      title: This endpoint does not support impersonation
+    "711":
+      title: Subscription already exists
+    "712":
+      title: Could not find subscription
+    "713":
+      title: Notification already exists
+    "714":
+      title: Could not find notification
+    "734":
+      title: Email address is incorrectly formatted.
+    "740":
+      title: Event type was missing
+    "741":
+      title: Unknown event type
+    "747":
+      title: Duplicate sort field used.
+    "748":
+      title: Defined template attributes failure.
+    "749":
+      title: Operation on wrong notification type.
+    "759":
+      title: Invalid configuration item path
+    "760":
+      title: Invalid configuration set type
+    "761":
+      title: Invalid webhook HTTP content
+    "762":
+      title: A failure occured when making a webhook request
+    "776":
+      title: Delivery already exists
+    "777":
+      title: Delivery not found
+    "779":
+      title: Invalid message content
+    "794":
+      title: Cannot modify the existing subscription.
+    "871":
+      title: The specified impersonated user does not exist
+    "884":
+      title: Missing licence to access feature.
+    "885":
+      title: Error sending to AWS SQS.
+  x-fbn-description: "The Notification Service allows you to subscribe to system events\
+    \ and receive notifications via email, SMS, AWS SQS, or webhooks, enabling automated\
+    \ responses and alerts for various operational activities within a LUSID environment."
 servers:
 - url: https://fbn-prd.lusid.com/notification
 security:

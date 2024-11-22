@@ -40,7 +40,7 @@ info:
     | <a name="885">885</a>|Error sending to AWS SQS.| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1066
+  version: 0.1.1067
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'

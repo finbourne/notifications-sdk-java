@@ -4,11 +4,11 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createNotification**](NotificationsApi.md#createNotification) | **POST** /api/subscriptions/{scope}/{code}/notifications | [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription. |
-| [**deleteNotification**](NotificationsApi.md#deleteNotification) | **DELETE** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription. |
-| [**getNotification**](NotificationsApi.md#getNotification) | **GET** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] GetNotification: Get a notification on a subscription. |
-| [**listNotifications**](NotificationsApi.md#listNotifications) | **GET** /api/subscriptions/{scope}/{code}/notifications | [EXPERIMENTAL] ListNotifications: List all notifications on a subscription. |
-| [**updateNotification**](NotificationsApi.md#updateNotification) | **PUT** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription |
+| [**createNotification**](NotificationsApi.md#createNotification) | **POST** /api/subscriptions/{scope}/{code}/notifications | CreateNotification: Add a Notification to a Subscription. |
+| [**deleteNotification**](NotificationsApi.md#deleteNotification) | **DELETE** /api/subscriptions/{scope}/{code}/notifications/{id} | DeleteNotification: Delete a notification for a given subscription. |
+| [**getNotification**](NotificationsApi.md#getNotification) | **GET** /api/subscriptions/{scope}/{code}/notifications/{id} | GetNotification: Get a notification on a subscription. |
+| [**listNotifications**](NotificationsApi.md#listNotifications) | **GET** /api/subscriptions/{scope}/{code}/notifications | ListNotifications: List all notifications on a subscription. |
+| [**updateNotification**](NotificationsApi.md#updateNotification) | **PUT** /api/subscriptions/{scope}/{code}/notifications/{id} | UpdateNotification: Update a Notification for a Subscription |
 
 
 
@@ -16,7 +16,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > Notification createNotification(scope, code, createNotificationRequest)
 
-[EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
+CreateNotification: Add a Notification to a Subscription.
 
 ### Example
 
@@ -109,7 +109,7 @@ public class NotificationsApiExample {
 
 > deleteNotification(scope, code, id)
 
-[EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
+DeleteNotification: Delete a notification for a given subscription.
 
 ### Example
 
@@ -202,7 +202,7 @@ null (empty response body)
 
 > Notification getNotification(scope, code, id)
 
-[EXPERIMENTAL] GetNotification: Get a notification on a subscription.
+GetNotification: Get a notification on a subscription.
 
 ### Example
 
@@ -296,7 +296,7 @@ public class NotificationsApiExample {
 
 > ResourceListOfNotification listNotifications(scope, code)
 
-[EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
+ListNotifications: List all notifications on a subscription.
 
 ### Example
 
@@ -388,7 +388,7 @@ public class NotificationsApiExample {
 
 > Notification updateNotification(scope, code, id, updateNotificationRequest)
 
-[EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+UpdateNotification: Update a Notification for a Subscription
 
 ### Example
 

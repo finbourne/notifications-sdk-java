@@ -291,7 +291,7 @@ public class ManualEventApi {
     }
 
     /**
-     * [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+     * TriggerManualEvent: Trigger a manual event.
      * 
      * @param manualEventRequest The data required to trigger a manual event. (required)
      * @return APItriggerManualEventRequest

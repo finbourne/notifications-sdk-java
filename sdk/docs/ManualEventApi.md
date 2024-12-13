@@ -4,7 +4,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**triggerManualEvent**](ManualEventApi.md#triggerManualEvent) | **POST** /api/manualevent | [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event. |
+| [**triggerManualEvent**](ManualEventApi.md#triggerManualEvent) | **POST** /api/manualevent | TriggerManualEvent: Trigger a manual event. |
 
 
 
@@ -12,7 +12,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > ManualEvent triggerManualEvent(manualEventRequest)
 
-[EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+TriggerManualEvent: Trigger a manual event.
 
 ### Example
 

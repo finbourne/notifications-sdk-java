@@ -4,7 +4,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**listAccessControlledResources**](ApplicationMetadataApi.md#listAccessControlledResources) | **GET** /api/metadata/access/resources | [EARLY ACCESS] ListAccessControlledResources: Get resources available for access control |
+| [**listAccessControlledResources**](ApplicationMetadataApi.md#listAccessControlledResources) | **GET** /api/metadata/access/resources | ListAccessControlledResources: Get resources available for access control |
 
 
 
@@ -12,7 +12,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > ResourceListOfAccessControlledResource listAccessControlledResources()
 
-[EARLY ACCESS] ListAccessControlledResources: Get resources available for access control
+ListAccessControlledResources: Get resources available for access control
 
 Get the comprehensive set of resources that are available for access control
 

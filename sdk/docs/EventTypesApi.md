@@ -4,8 +4,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getEventType**](EventTypesApi.md#getEventType) | **GET** /api/eventtypes/{eventType} | [EXPERIMENTAL] GetEventType: Gets the specified event type schema. |
-| [**listEventTypes**](EventTypesApi.md#listEventTypes) | **GET** /api/eventtypes | [EXPERIMENTAL] ListEventTypes: Lists all of the available event types. |
+| [**getEventType**](EventTypesApi.md#getEventType) | **GET** /api/eventtypes/{eventType} | GetEventType: Gets the specified event type schema. |
+| [**listEventTypes**](EventTypesApi.md#listEventTypes) | **GET** /api/eventtypes | ListEventTypes: Lists all of the available event types. |
 
 
 
@@ -13,7 +13,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > EventTypeSchema getEventType(eventType)
 
-[EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+GetEventType: Gets the specified event type schema.
 
 ### Example
 
@@ -103,7 +103,7 @@ public class EventTypesApiExample {
 
 > ResourceListOfEventTypeSchema listEventTypes()
 
-[EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+ListEventTypes: Lists all of the available event types.
 
 ### Example
 

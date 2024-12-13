@@ -4,7 +4,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**listDeliveries**](DeliveriesApi.md#listDeliveries) | **GET** /api/deliveries | [EXPERIMENTAL] ListDeliveries: List Deliveries |
+| [**listDeliveries**](DeliveriesApi.md#listDeliveries) | **GET** /api/deliveries | ListDeliveries: List Deliveries |
 
 
 
@@ -12,7 +12,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > ResourceListOfDelivery listDeliveries(page, limit, filter)
 
-[EXPERIMENTAL] ListDeliveries: List Deliveries
+ListDeliveries: List Deliveries
 
 Currently only returns deliveries with failed attempts.
 

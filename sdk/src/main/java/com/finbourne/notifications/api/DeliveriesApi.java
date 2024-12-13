@@ -331,7 +331,7 @@ public class DeliveriesApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListDeliveries: List Deliveries
+     * ListDeliveries: List Deliveries
      * Currently only returns deliveries with failed attempts.
      * @return APIlistDeliveriesRequest
      * @http.response.details

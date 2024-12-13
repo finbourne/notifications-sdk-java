@@ -4,11 +4,11 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSubscription**](SubscriptionsApi.md#createSubscription) | **POST** /api/subscriptions | [EXPERIMENTAL] CreateSubscription: Create a new subscription. |
-| [**deleteSubscription**](SubscriptionsApi.md#deleteSubscription) | **DELETE** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] DeleteSubscription: Delete a subscription. |
-| [**getSubscription**](SubscriptionsApi.md#getSubscription) | **GET** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] GetSubscription: Get a subscription. |
-| [**listSubscriptions**](SubscriptionsApi.md#listSubscriptions) | **GET** /api/subscriptions | [EXPERIMENTAL] ListSubscriptions: List subscriptions. |
-| [**updateSubscription**](SubscriptionsApi.md#updateSubscription) | **PUT** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] UpdateSubscription: Update an existing subscription. |
+| [**createSubscription**](SubscriptionsApi.md#createSubscription) | **POST** /api/subscriptions | CreateSubscription: Create a new subscription. |
+| [**deleteSubscription**](SubscriptionsApi.md#deleteSubscription) | **DELETE** /api/subscriptions/{scope}/{code} | DeleteSubscription: Delete a subscription. |
+| [**getSubscription**](SubscriptionsApi.md#getSubscription) | **GET** /api/subscriptions/{scope}/{code} | GetSubscription: Get a subscription. |
+| [**listSubscriptions**](SubscriptionsApi.md#listSubscriptions) | **GET** /api/subscriptions | ListSubscriptions: List subscriptions. |
+| [**updateSubscription**](SubscriptionsApi.md#updateSubscription) | **PUT** /api/subscriptions/{scope}/{code} | UpdateSubscription: Update an existing subscription. |
 
 
 
@@ -16,7 +16,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 > Subscription createSubscription(createSubscription)
 
-[EXPERIMENTAL] CreateSubscription: Create a new subscription.
+CreateSubscription: Create a new subscription.
 
 ### Example
 
@@ -105,7 +105,7 @@ public class SubscriptionsApiExample {
 
 > deleteSubscription(scope, code)
 
-[EXPERIMENTAL] DeleteSubscription: Delete a subscription.
+DeleteSubscription: Delete a subscription.
 
 ### Example
 
@@ -196,7 +196,7 @@ null (empty response body)
 
 > Subscription getSubscription(scope, code)
 
-[EXPERIMENTAL] GetSubscription: Get a subscription.
+GetSubscription: Get a subscription.
 
 ### Example
 
@@ -288,7 +288,7 @@ public class SubscriptionsApiExample {
 
 > ResourceListOfSubscription listSubscriptions(filter, sortBy, page, limit)
 
-[EXPERIMENTAL] ListSubscriptions: List subscriptions.
+ListSubscriptions: List subscriptions.
 
 ### Example
 
@@ -383,7 +383,7 @@ public class SubscriptionsApiExample {
 
 > Subscription updateSubscription(scope, code, updateSubscription)
 
-[EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+UpdateSubscription: Update an existing subscription.
 
 ### Example
 

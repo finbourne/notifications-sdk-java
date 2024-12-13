@@ -309,7 +309,7 @@ public class NotificationsApi {
     }
 
     /**
-     * [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
+     * CreateNotification: Add a Notification to a Subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -556,7 +556,7 @@ public class NotificationsApi {
     }
 
     /**
-     * [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
+     * DeleteNotification: Delete a notification for a given subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -812,7 +812,7 @@ public class NotificationsApi {
     }
 
     /**
-     * [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
+     * GetNotification: Get a notification on a subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -1060,7 +1060,7 @@ public class NotificationsApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
+     * ListNotifications: List all notifications on a subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -1326,7 +1326,7 @@ public class NotificationsApi {
     }
 
     /**
-     * [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+     * UpdateNotification: Update a Notification for a Subscription
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)

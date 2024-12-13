@@ -40,7 +40,7 @@ info:
     | <a name="885">885</a>|Error sending to AWS SQS.| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1071
+  version: 0.1.1072
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -230,10 +230,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListDeliveries: List Deliveries"
+      summary: "ListDeliveries: List Deliveries"
       tags:
       - Deliveries
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/eventtypes:
     get:
@@ -299,10 +299,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListEventTypes: Lists all of the available event types."
+      summary: "ListEventTypes: Lists all of the available event types."
       tags:
       - EventTypes
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/eventtypes/{eventType}:
     get:
@@ -375,10 +375,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetEventType: Gets the specified event type schema."
+      summary: "GetEventType: Gets the specified event type schema."
       tags:
       - EventTypes
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/manualevent:
     post:
@@ -460,10 +460,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] TriggerManualEvent: Trigger a manual event."
+      summary: "TriggerManualEvent: Trigger a manual event."
       tags:
       - ManualEvent
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/metadata/access/resources:
@@ -492,11 +492,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EARLY ACCESS] ListAccessControlledResources: Get resources available\
-        \ for access control"
+      summary: "ListAccessControlledResources: Get resources available for access\
+        \ control"
       tags:
       - Application Metadata
-      x-fbn-apistatus: EarlyAccess
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/subscriptions:
     get:
@@ -599,10 +599,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListSubscriptions: List subscriptions."
+      summary: "ListSubscriptions: List subscriptions."
       tags:
       - Subscriptions
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     post:
       operationId: CreateSubscription
@@ -703,10 +703,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] CreateSubscription: Create a new subscription."
+      summary: "CreateSubscription: Create a new subscription."
       tags:
       - Subscriptions
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/subscriptions/{scope}/{code}:
@@ -758,10 +758,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DeleteSubscription: Delete a subscription."
+      summary: "DeleteSubscription: Delete a subscription."
       tags:
       - Subscriptions
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     get:
       operationId: GetSubscription
@@ -831,10 +831,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetSubscription: Get a subscription."
+      summary: "GetSubscription: Get a subscription."
       tags:
       - Subscriptions
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     put:
       operationId: UpdateSubscription
@@ -952,10 +952,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] UpdateSubscription: Update an existing subscription."
+      summary: "UpdateSubscription: Update an existing subscription."
       tags:
       - Subscriptions
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/subscriptions/{scope}/{code}/notifications:
@@ -1037,10 +1037,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListNotifications: List all notifications on a subscription."
+      summary: "ListNotifications: List all notifications on a subscription."
       tags:
       - Notifications
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     post:
       operationId: CreateNotification
@@ -1524,10 +1524,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription."
+      summary: "CreateNotification: Add a Notification to a Subscription."
       tags:
       - Notifications
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/subscriptions/{scope}/{code}/notifications/{id}:
@@ -1587,11 +1587,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DeleteNotification: Delete a notification for a given\
-        \ subscription."
+      summary: "DeleteNotification: Delete a notification for a given subscription."
       tags:
       - Notifications
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     get:
       operationId: GetNotification
@@ -1670,10 +1669,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetNotification: Get a notification on a subscription."
+      summary: "GetNotification: Get a notification on a subscription."
       tags:
       - Notifications
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     put:
       operationId: UpdateNotification
@@ -2059,10 +2058,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription"
+      summary: "UpdateNotification: Update a Notification for a Subscription"
       tags:
       - Notifications
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
 components:

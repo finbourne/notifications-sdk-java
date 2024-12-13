@@ -293,7 +293,7 @@ public class SubscriptionsApi {
     }
 
     /**
-     * [EXPERIMENTAL] CreateSubscription: Create a new subscription.
+     * CreateSubscription: Create a new subscription.
      * 
      * @param createSubscription The data to create a subscription (required)
      * @return APIcreateSubscriptionRequest
@@ -530,7 +530,7 @@ public class SubscriptionsApi {
     }
 
     /**
-     * [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
+     * DeleteSubscription: Delete a subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -777,7 +777,7 @@ public class SubscriptionsApi {
     }
 
     /**
-     * [EXPERIMENTAL] GetSubscription: Get a subscription.
+     * GetSubscription: Get a subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)
@@ -1061,7 +1061,7 @@ public class SubscriptionsApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListSubscriptions: List subscriptions.
+     * ListSubscriptions: List subscriptions.
      * 
      * @return APIlistSubscriptionsRequest
      * @http.response.details
@@ -1316,7 +1316,7 @@ public class SubscriptionsApi {
     }
 
     /**
-     * [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+     * UpdateSubscription: Update an existing subscription.
      * 
      * @param scope The scope that identifies a subscription (required)
      * @param code The code that identifies a subscription (required)

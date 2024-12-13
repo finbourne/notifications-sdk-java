@@ -295,7 +295,7 @@ public class EventTypesApi {
     }
 
     /**
-     * [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+     * GetEventType: Gets the specified event type schema.
      * 
      * @param eventType The event type to retrieve schema for. (required)
      * @return APIgetEventTypeRequest
@@ -518,7 +518,7 @@ public class EventTypesApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+     * ListEventTypes: Lists all of the available event types.
      * 
      * @return APIlistEventTypesRequest
      * @http.response.details

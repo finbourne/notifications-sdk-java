@@ -38,9 +38,10 @@ info:
     | <a name="871">871</a>|The specified impersonated user does not exist| |
     | <a name="884">884</a>|Missing licence to access feature.| |
     | <a name="885">885</a>|Error sending to AWS SQS.| |
+    | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1072
+  version: 0.1.1073
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -100,6 +101,8 @@ info:
       title: Missing licence to access feature.
     "885":
       title: Error sending to AWS SQS.
+    "939":
+      title: Blocked by a Network Zone
   x-fbn-description: "The Notification Service allows you to subscribe to system events\
     \ and receive notifications via email, SMS, AWS SQS, or webhooks, enabling automated\
     \ responses and alerts for various operational activities within a LUSID environment."

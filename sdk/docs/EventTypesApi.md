@@ -91,7 +91,7 @@ public class EventTypesApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | The details of the input related failure |  -  |
 | **404** | No event type exists with the specified type |  -  |
 | **0** | Error response |  -  |
@@ -177,7 +177,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **404** | No event types found |  -  |
 | **0** | Error response |  -  |
 

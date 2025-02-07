@@ -284,7 +284,7 @@ public class NotificationsApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | The details of the input related failure |  -  |
 | **404** | No notification exists in current scope |  -  |
 | **0** | Error response |  -  |
@@ -376,7 +376,7 @@ public class NotificationsApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | The details of the input related failure |  -  |
 | **404** | No notifications exists with the provided filter(s) |  -  |
 | **0** | Error response |  -  |
@@ -472,7 +472,7 @@ public class NotificationsApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | The details of the input related failure |  -  |
 | **404** | No notification exists in current scope |  -  |
 | **0** | Error response |  -  |

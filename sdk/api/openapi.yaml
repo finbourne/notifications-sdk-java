@@ -41,7 +41,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1073
+  version: 0.1.1093
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -212,7 +212,7 @@ paths:
                 links: []
               schema:
                 $ref: '#/components/schemas/ResourceListOfDelivery'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -287,7 +287,7 @@ paths:
                   method: GET
               schema:
                 $ref: '#/components/schemas/ResourceListOfEventTypeSchema'
-          description: Success
+          description: OK
         "404":
           content:
             application/json:
@@ -357,7 +357,7 @@ paths:
                 href: Test:firstString
               schema:
                 $ref: '#/components/schemas/EventTypeSchema'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -486,7 +486,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
-          description: Success
+          description: OK
         default:
           content:
             application/json:
@@ -587,7 +587,7 @@ paths:
                   method: GET
               schema:
                 $ref: '#/components/schemas/ResourceListOfSubscription'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -813,7 +813,7 @@ paths:
                 href: https://fbn-test.lusid.com/notifications/api/subscriptions/TestScope/TestCode
               schema:
                 $ref: '#/components/schemas/Subscription'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -934,7 +934,7 @@ paths:
                 href: https://fbn-test.lusid.com/notifications/api/subscriptions/TestScope/TestCode
               schema:
                 $ref: '#/components/schemas/Subscription'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -1019,7 +1019,7 @@ paths:
                   method: GET
               schema:
                 $ref: '#/components/schemas/ResourceListOfNotification'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -1651,7 +1651,7 @@ paths:
                 href: http://fbn-test/api/subscriptions/testScope/testCode/notifications/ExampleId
               schema:
                 $ref: '#/components/schemas/Notification'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -2040,7 +2040,7 @@ paths:
                 href: http://fbn-test/api/subscriptions/testScope/testCode/notifications/ExampleId
               schema:
                 $ref: '#/components/schemas/Notification'
-          description: Success
+          description: OK
         "400":
           content:
             application/json:
@@ -2916,6 +2916,7 @@ components:
       properties:
         identifier:
           additionalProperties:
+            nullable: true
             type: string
           minLength: 1
           type: object

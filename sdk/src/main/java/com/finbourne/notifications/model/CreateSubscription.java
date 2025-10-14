@@ -191,7 +191,7 @@ public class CreateSubscription {
   }
 
    /**
-   * Id of user associated with subscription. All events associated with   the subscription will use this user to check entitlements against   the resource to send a notification. Can be null, in which case   we&#39;ll default to that of the user making this request
+   * Id of user associated with subscription. All events associated with  the subscription will use this user to check entitlements against  the resource to send a notification. Can be null, in which case  we&#39;ll default to that of the user making this request
    * @return useAsAuth
   **/
   @jakarta.annotation.Nullable

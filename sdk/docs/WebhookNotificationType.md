@@ -1,31 +1,41 @@
-
-
-# WebhookNotificationType
-
+# com.finbourne.notifications.model.WebhookNotificationType
 The information required to create or update a Webhook notification
 
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | The type of delivery mechanism for this notification |  |
-|**httpMethod** | **String** | The HTTP method such as GET, POST, etc. to use on the request |  |
-|**url** | **String** | The URL to send the request to |  |
-|**authenticationType** | **String** | The type of authentication to use on the request, can be one of the following values:  - Lusid - Internal LUSID call  - BasicAuth - User specified Username and password  - BearerToken - Authorization header with Bearer scheme and user specified key  - None - No Authorization required on the webhook call |  |
-|**authenticationConfigurationItemPaths** | **Map&lt;String, String&gt;** | The paths of the Configuration Store configuration items that contain the authentication configuration. Each  authentication type requires different keys:  - Lusid - None required  - BasicAuth - Requires &#39;Username&#39; and &#39;Password&#39;  - BearerToken - Requires &#39;BearerToken&#39; and optionally &#39;BearerScheme&#39;  - None - None required     e.g. the following would be valid assuming that the config is present in the configuration store at the  specified paths:      \&quot;authenticationType\&quot;: \&quot;BasicAuth\&quot;,   \&quot;authenticationConfigurationItemPaths\&quot;: {   \&quot;Username\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\&quot;,   \&quot;Password\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\&quot;   } |  [optional] |
-|**contentType** | **String** | The type of the content e.g. Json |  |
-|**content** | **Object** | The content of the request |  [optional] |
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **String** | The type of delivery mechanism for this notification | [default to String]
+**httpMethod** | **String** | The HTTP method such as GET, POST, etc. to use on the request | [default to String]
+**url** | **String** | The URL to send the request to | [default to String]
+**authenticationType** | **String** | The type of authentication to use on the request, can be one of the following values: - Lusid - Internal LUSID call - BasicAuth - User specified Username and password - BearerToken - Authorization header with Bearer scheme and user specified key - None - No Authorization required on the webhook call | [default to String]
+**authenticationConfigurationItemPaths** | **Map&lt;String, String&gt;** | The paths of the Configuration Store configuration items that contain the authentication configuration. Each authentication type requires different keys: - Lusid - None required - BasicAuth - Requires &#39;Username&#39; and &#39;Password&#39; - BearerToken - Requires &#39;BearerToken&#39; and optionally &#39;BearerScheme&#39; - None - None required   e.g. the following would be valid assuming that the config is present in the configuration store at the specified paths:    \&quot;authenticationType\&quot;: \&quot;BasicAuth\&quot;,  \&quot;authenticationConfigurationItemPaths\&quot;: {  \&quot;Username\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\&quot;,  \&quot;Password\&quot;: \&quot;config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\&quot;  } | [optional] [default to Map<String, String>]
+**contentType** | **String** | The type of the content e.g. Json | [default to String]
+**content** | **Object** | The content of the request | [optional] [default to Object]
 
+```java
+import com.finbourne.notifications.model.WebhookNotificationType;
+import java.util.*;
+import java.lang.System;
+import java.net.URI;
 
+String Type = "example Type";
+String HttpMethod = "example HttpMethod";
+String Url = "example Url";
+String AuthenticationType = "example AuthenticationType";
+@jakarta.annotation.Nullable Map<String, String> AuthenticationConfigurationItemPaths = new Map<String, String>();
+String ContentType = "example ContentType";
+@jakarta.annotation.Nullable Object 
 
-## Enum: TypeEnum
-
-| Name | Value |
-|---- | -----|
-| WEBHOOK | &quot;Webhook&quot; |
-
+WebhookNotificationType webhookNotificationTypeInstance = new WebhookNotificationType()
+    .Type(Type)
+    .HttpMethod(HttpMethod)
+    .Url(Url)
+    .AuthenticationType(AuthenticationType)
+    .AuthenticationConfigurationItemPaths(AuthenticationConfigurationItemPaths)
+    .ContentType(ContentType)
+    .Content(Content);
+```
 
 
 [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
-
-

@@ -197,7 +197,7 @@ public class DeliveriesApi {
 
         /**
          * Set filter
-         * @param filter Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.  By default, we set this filter to only query for the last week&#39;s worth of Deliveries, however if a filter is explicitly set, this will be overriden.  An example filter to override the attempt time date might be &#39;AttemptTime gt 2023-08-25&#39; for example (optional)
+         * @param filter Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914. By default, we set this filter to only query for the last week&#39;s worth of Deliveries, however if a filter is explicitly set, this will be overriden. An example filter to override the attempt time date might be &#39;AttemptTime gt 2023-08-25&#39; for example (optional)
          * @return APIlistDeliveriesRequest
          */
         public APIlistDeliveriesRequest filter(String filter) {

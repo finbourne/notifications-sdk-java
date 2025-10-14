@@ -68,7 +68,7 @@ public class MatchingPattern {
   }
 
    /**
-   * The type of event to subscribe to. The list of available event types can be discovered  by calling the ‘List available EventTypes’ API endpoint.
+   * The type of event to subscribe to. The list of available event types can be discovered by calling the ‘List available EventTypes’ API endpoint.
    * @return eventType
   **/
   @jakarta.annotation.Nonnull

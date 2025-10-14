@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.4
 info:
   contact:
     email: info@finbourne.com
@@ -41,7 +41,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1136
+  version: 0.1.1148
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -153,12 +153,10 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: "Expression to filter the result set. For more information about\
-          \ filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.\r\
-          \nBy default, we set this filter to only query for the last week's worth\
-          \ of Deliveries, however if a filter is explicitly set, this will be overriden.\r\
-          \nAn example filter to override the attempt time date might be 'AttemptTime\
-          \ gt 2023-08-25' for example"
+      - description: |-
+          Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+          By default, we set this filter to only query for the last week's worth of Deliveries, however if a filter is explicitly set, this will be overriden.
+          An example filter to override the attempt time date might be 'AttemptTime gt 2023-08-25' for example
         explode: true
         in: query
         name: filter
@@ -2613,9 +2611,9 @@ components:
           $ref: '#/components/schemas/MatchingPattern'
         useAsAuth:
           description: "Id of user associated with subscription. All events associated\
-            \ with \r\nthe subscription will use this user to check entitlements against\
-            \ \r\nthe resource to send a notification. Can be null, in which case\
-            \ \r\nwe'll default to that of the user making this request"
+            \ with \nthe subscription will use this user to check entitlements against\
+            \ \nthe resource to send a notification. Can be null, in which case \n\
+            we'll default to that of the user making this request"
           maxLength: 64
           minLength: 1
           nullable: true
@@ -3139,9 +3137,9 @@ components:
         eventType: eventType
       properties:
         eventType:
-          description: "The type of event to subscribe to. The list of available event\
-            \ types can be discovered\r\nby calling the ‘List available EventTypes’\
-            \ API endpoint."
+          description: |-
+            The type of event to subscribe to. The list of available event types can be discovered
+            by calling the ‘List available EventTypes’ API endpoint.
           maxLength: 512
           minLength: 0
           pattern: "^[a-zA-Z]*$"
@@ -4001,9 +3999,9 @@ components:
           $ref: '#/components/schemas/MatchingPattern'
         useAsAuth:
           description: "Id of user associated with subscription. All events associated\
-            \ with \r\nthe subscription will use this user to check entitlements against\
-            \ \r\nthe resource to send a notification. Can be null, in which case\
-            \ \r\nwe'll default to that of the user making this request"
+            \ with \nthe subscription will use this user to check entitlements against\
+            \ \nthe resource to send a notification. Can be null, in which case \n\
+            we'll default to that of the user making this request"
           maxLength: 64
           minLength: 1
           nullable: true
@@ -4036,11 +4034,12 @@ components:
             s.])*\\}\\}))*$"
           type: string
         authenticationType:
-          description: "The type of authentication to use on the request, can be one\
-            \ of the following values:\r\n- Lusid - Internal LUSID call\r\n- BasicAuth\
-            \ - User specified Username and password\r\n- BearerToken - Authorization\
-            \ header with Bearer scheme and user specified key\r\n- None - No Authorization\
-            \ required on the webhook call"
+          description: |-
+            The type of authentication to use on the request, can be one of the following values:
+            - Lusid - Internal LUSID call
+            - BasicAuth - User specified Username and password
+            - BearerToken - Authorization header with Bearer scheme and user specified key
+            - None - No Authorization required on the webhook call
           minLength: 1
           type: string
         authenticationConfigurationItemPaths:
@@ -4048,16 +4047,15 @@ components:
             nullable: true
             type: string
           description: "The paths of the Configuration Store configuration items that\
-            \ contain the authentication configuration. Each\r\nauthentication type\
-            \ requires different keys:\r\n- Lusid - None required\r\n- BasicAuth -\
-            \ Requires 'Username' and 'Password'\r\n- BearerToken - Requires 'BearerToken'\
-            \ and optionally 'BearerScheme'\r\n- None - None required\r\n \r\ne.g.\
-            \ the following would be valid assuming that the config is present in\
-            \ the configuration store at the\r\nspecified paths:\r\n \r\n \"authenticationType\"\
-            : \"BasicAuth\",\r\n \"authenticationConfigurationItemPaths\": {\r\n \"\
-            Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\"\
-            ,\r\n \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"\
-            \r\n }"
+            \ contain the authentication configuration. Each\nauthentication type\
+            \ requires different keys:\n- Lusid - None required\n- BasicAuth - Requires\
+            \ 'Username' and 'Password'\n- BearerToken - Requires 'BearerToken' and\
+            \ optionally 'BearerScheme'\n- None - None required\n \ne.g. the following\
+            \ would be valid assuming that the config is present in the configuration\
+            \ store at the\nspecified paths:\n \n \"authenticationType\": \"BasicAuth\"\
+            ,\n \"authenticationConfigurationItemPaths\": {\n \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\"\
+            ,\n \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"\
+            \n }"
           nullable: true
           type: object
         contentType:
@@ -4101,15 +4099,15 @@ components:
             nullable: true
             type: string
           description: "The paths of the Configuration Store configuration items that\
-            \ contain the authentication configuration. Each\r\nauthentication type\
-            \ requires different keys:\r\n- Lusid - None required\r\n- BasicAuth -\
-            \ Requires 'Username' and 'Password'\r\n- BearerToken - Requires 'BearerToken'\
-            \ and optionally 'BearerScheme'\r\n \r\ne.g. the following would be valid\
-            \ assuming that the config is present in the configuration store at the\r\
-            \nspecified paths:\r\n \r\n \"authenticationType\": \"BasicAuth\",\r\n\
-            \ \"authenticationConfigurationItemPaths\": {\r\n \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\"\
-            ,\r\n \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"\
-            \r\n }"
+            \ contain the authentication configuration. Each\nauthentication type\
+            \ requires different keys:\n- Lusid - None required\n- BasicAuth - Requires\
+            \ 'Username' and 'Password'\n- BearerToken - Requires 'BearerToken' and\
+            \ optionally 'BearerScheme'\n \ne.g. the following would be valid assuming\
+            \ that the config is present in the configuration store at the\nspecified\
+            \ paths:\n \n \"authenticationType\": \"BasicAuth\",\n \"authenticationConfigurationItemPaths\"\
+            : {\n \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\"\
+            ,\n \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"\
+            \n }"
           nullable: true
           type: object
         contentType:

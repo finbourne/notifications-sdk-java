@@ -41,7 +41,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1148
+  version: 0.1.1159
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -619,7 +619,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/CreateSubscription'
@@ -633,7 +633,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/CreateSubscription'
@@ -647,7 +647,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/CreateSubscription'
@@ -661,7 +661,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/CreateSubscription'
@@ -871,7 +871,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
@@ -882,7 +882,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
@@ -893,7 +893,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
@@ -904,7 +904,7 @@ paths:
               status: Active
               matchingPattern:
                 eventType: Manual
-                filter: Body.Message eq 'TestMessage'
+                filter: Header.UserId eq '00uABC123'
               useAsAuth: TestClient
             schema:
               $ref: '#/components/schemas/UpdateSubscription'
@@ -1079,11 +1079,12 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1097,7 +1098,8 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Create Webhook Notification:
@@ -1115,7 +1117,7 @@ paths:
                     contentType: Json
                     Content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Create AWS SQS Notification:
                 value:
                   notificationId: TestId
@@ -1123,7 +1125,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1134,7 +1137,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Create Azure Service Bus Notification:
                 value:
@@ -1143,7 +1147,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1160,11 +1165,12 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1178,7 +1184,8 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Create Webhook Notification:
@@ -1196,7 +1203,7 @@ paths:
                     contentType: Json
                     Content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Create AWS SQS Notification:
                 value:
                   notificationId: TestId
@@ -1204,7 +1211,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1215,7 +1223,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Create Azure Service Bus Notification:
                 value:
@@ -1224,7 +1233,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1241,11 +1251,12 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1259,7 +1270,8 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Create Webhook Notification:
@@ -1277,7 +1289,7 @@ paths:
                     contentType: Json
                     Content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Create AWS SQS Notification:
                 value:
                   notificationId: TestId
@@ -1285,7 +1297,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1296,7 +1309,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Create Azure Service Bus Notification:
                 value:
@@ -1305,7 +1319,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1322,11 +1337,12 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1340,7 +1356,8 @@ paths:
                   description: TestDescription
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Create Webhook Notification:
@@ -1358,7 +1375,7 @@ paths:
                     contentType: Json
                     Content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Create AWS SQS Notification:
                 value:
                   notificationId: TestId
@@ -1366,7 +1383,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1377,7 +1395,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Create Azure Service Bus Notification:
                 value:
@@ -1386,7 +1405,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1721,11 +1741,12 @@ paths:
                   description: Example description
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1738,7 +1759,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Update Webhook Notification:
@@ -1755,14 +1777,15 @@ paths:
                     contentType: Json
                     content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Update AWS SQS Notification:
                 value:
                   displayName: TestDisplayName
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1772,7 +1795,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Update Azure Service Bus Notification:
                 value:
@@ -1780,7 +1804,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1796,11 +1821,12 @@ paths:
                   description: Example description
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1813,7 +1839,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Update Webhook Notification:
@@ -1830,14 +1857,15 @@ paths:
                     contentType: Json
                     content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Update AWS SQS Notification:
                 value:
                   displayName: TestDisplayName
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1847,7 +1875,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Update Azure Service Bus Notification:
                 value:
@@ -1855,7 +1884,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1871,11 +1901,12 @@ paths:
                   description: Example description
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1888,7 +1919,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Update Webhook Notification:
@@ -1905,14 +1937,15 @@ paths:
                     contentType: Json
                     content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Update AWS SQS Notification:
                 value:
                   displayName: TestDisplayName
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1922,7 +1955,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Update Azure Service Bus Notification:
                 value:
@@ -1930,7 +1964,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId
@@ -1946,11 +1981,12 @@ paths:
                   description: Example description
                   notificationType:
                     type: Email
-                    subject: "Event with message of {{body.message}}"
-                    plainTextBody: "Event with message {{body.message}} and subject\
-                      \ {{body.subject}}"
-                    htmlBody: "<p>Event with message {{body.message}} and subject\
-                      \ {{body.subject}}</p>"
+                    subject: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
+                    plainTextBody: "Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}"
+                    htmlBody: "<p>Event of type '{{header.eventType}}' was triggered\
+                      \ at timestamp {{header.timestamp}}</p>"
                     emailAddressTo:
                     - recipient@finbourne.com
                     emailAddressCc:
@@ -1963,7 +1999,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: Sms
-                    body: "Event with message {{body.message}} and subject {{body.subject}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     recipients:
                     - +447000000000
               Update Webhook Notification:
@@ -1980,14 +2017,15 @@ paths:
                     contentType: Json
                     content:
                       Key: Value Example
-                      MessageKey: "{{body.message}}"
+                      MessageKey: "{{header.EventType}}"
               Update AWS SQS Notification:
                 value:
                   displayName: TestDisplayName
                   description: Example description
                   notificationType:
                     type: AmazonSqs
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     apiKeyRef: config://shared/official/system-a-config/apiKey
                     apiSecretRef: config://shared/official/system-a-config/apiSecret
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
@@ -1997,7 +2035,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AmazonSqsPrincipalAuth
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     queueUrlRef: config://shared/official/system-a-config/queueUrl
               Update Azure Service Bus Notification:
                 value:
@@ -2005,7 +2044,8 @@ paths:
                   description: Example description
                   notificationType:
                     type: AzureServiceBus
-                    body: "Event with message {{body.message}}"
+                    body: "LUSID Notification: Event of type '{{header.eventType}}'\
+                      \ was triggered"
                     namespace: config://shared/official/system-a-config/namespace
                     queueName: config://shared/official/system-a-config/queueName
                     tenantId: config://shared/official/system-a-config/tenantId

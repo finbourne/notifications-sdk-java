@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **tenantIdRef** | **String** | Reference to tenant id from Configuration Store | [optional] [default to String]
 **clientIdRef** | **String** | Reference to client id from Configuration Store | [optional] [default to String]
 **clientSecretRef** | **String** | Reference to client secret from Configuration Store | [optional] [default to String]
+**applicationProperties** | **Map&lt;String, String&gt;** | Optional key-value pairs attached to the Azure Service Bus message envelope. | [optional] [default to Map<String, String>]
 **subject** | **String** | The subject of the email | [optional] [default to String]
 **plainTextBody** | **String** | The plain text body of the email | [optional] [default to String]
 **htmlBody** | **String** | The HTML body of the email (if any) | [optional] [default to String]

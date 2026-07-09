@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **tenantIdRef** | **String** | Reference to tenant id from Configuration Store | [optional] [default to String]
 **clientIdRef** | **String** | Reference to client id from Configuration Store | [optional] [default to String]
 **clientSecretRef** | **String** | Reference to client secret from Configuration Store | [optional] [default to String]
+**applicationProperties** | **Map&lt;String, String&gt;** | Optional key-value pairs attached to the Azure Service Bus message envelope. | [optional] [default to Map<String, String>]
 
 ```java
 import com.finbourne.notifications.model.AzureServiceBusTypeResponse;
@@ -26,6 +27,7 @@ import java.net.URI;
 @jakarta.annotation.Nullable String TenantIdRef = "example TenantIdRef";
 @jakarta.annotation.Nullable String ClientIdRef = "example ClientIdRef";
 @jakarta.annotation.Nullable String ClientSecretRef = "example ClientSecretRef";
+@jakarta.annotation.Nullable Map<String, String> ApplicationProperties = new Map<String, String>();
 
 
 AzureServiceBusTypeResponse azureServiceBusTypeResponseInstance = new AzureServiceBusTypeResponse()
@@ -35,7 +37,8 @@ AzureServiceBusTypeResponse azureServiceBusTypeResponseInstance = new AzureServi
     .Body(Body)
     .TenantIdRef(TenantIdRef)
     .ClientIdRef(ClientIdRef)
-    .ClientSecretRef(ClientSecretRef);
+    .ClientSecretRef(ClientSecretRef)
+    .ApplicationProperties(ApplicationProperties);
 ```
 
 

@@ -41,7 +41,7 @@ info:
     | <a name="939">939</a>|Blocked by a Network Zone| |
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Notifications API
-  version: 0.1.1166
+  version: 0.1.1210
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2533,6 +2533,14 @@ components:
           description: Reference to client secret from Configuration Store
           minLength: 1
           type: string
+        applicationProperties:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Optional key-value pairs to attach to the Azure Service Bus
+            message envelope.
+          nullable: true
+          type: object
       required:
       - body
       - clientId
@@ -2576,6 +2584,14 @@ components:
           description: Reference to client secret from Configuration Store
           nullable: true
           type: string
+        applicationProperties:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Optional key-value pairs attached to the Azure Service Bus
+            message envelope.
+          nullable: true
+          type: object
       type: object
     CreateNotificationRequest:
       additionalProperties: false

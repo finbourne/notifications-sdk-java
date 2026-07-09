@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **tenantId** | **String** | Reference to tenant id from Configuration Store | [default to String]
 **clientId** | **String** | Reference to client id from Configuration Store | [default to String]
 **clientSecret** | **String** | Reference to client secret from Configuration Store | [default to String]
+**applicationProperties** | **Map&lt;String, String&gt;** | Optional key-value pairs to attach to the Azure Service Bus message envelope. | [optional] [default to Map<String, String>]
 
 ```java
 import com.finbourne.notifications.model.AzureServiceBusNotificationType;
@@ -26,6 +27,7 @@ String Body = "example Body";
 String TenantId = "example TenantId";
 String ClientId = "example ClientId";
 String ClientSecret = "example ClientSecret";
+@jakarta.annotation.Nullable Map<String, String> ApplicationProperties = new Map<String, String>();
 
 
 AzureServiceBusNotificationType azureServiceBusNotificationTypeInstance = new AzureServiceBusNotificationType()
@@ -35,7 +37,8 @@ AzureServiceBusNotificationType azureServiceBusNotificationTypeInstance = new Az
     .Body(Body)
     .TenantId(TenantId)
     .ClientId(ClientId)
-    .ClientSecret(ClientSecret);
+    .ClientSecret(ClientSecret)
+    .ApplicationProperties(ApplicationProperties);
 ```
 
 

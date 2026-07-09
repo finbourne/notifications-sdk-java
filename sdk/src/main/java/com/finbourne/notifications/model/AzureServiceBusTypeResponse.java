@@ -18,6 +18,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -122,6 +124,10 @@ public class AzureServiceBusTypeResponse {
   public static final String SERIALIZED_NAME_CLIENT_SECRET_REF = "clientSecretRef";
   @SerializedName(SERIALIZED_NAME_CLIENT_SECRET_REF)
   private String clientSecretRef;
+
+  public static final String SERIALIZED_NAME_APPLICATION_PROPERTIES = "applicationProperties";
+  @SerializedName(SERIALIZED_NAME_APPLICATION_PROPERTIES)
+  private Map<String, String> applicationProperties;
 
   public AzureServiceBusTypeResponse() {
   }
@@ -273,6 +279,35 @@ public class AzureServiceBusTypeResponse {
   }
 
 
+  public AzureServiceBusTypeResponse applicationProperties(Map<String, String> applicationProperties) {
+    
+    this.applicationProperties = applicationProperties;
+    return this;
+  }
+
+  public AzureServiceBusTypeResponse putApplicationPropertiesItem(String key, String applicationPropertiesItem) {
+    if (this.applicationProperties == null) {
+      this.applicationProperties = new HashMap<>();
+    }
+    this.applicationProperties.put(key, applicationPropertiesItem);
+    return this;
+  }
+
+   /**
+   * Optional key-value pairs attached to the Azure Service Bus message envelope.
+   * @return applicationProperties
+  **/
+  @jakarta.annotation.Nullable
+  public Map<String, String> getApplicationProperties() {
+    return applicationProperties;
+  }
+
+
+  public void setApplicationProperties(Map<String, String> applicationProperties) {
+    this.applicationProperties = applicationProperties;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -289,7 +324,8 @@ public class AzureServiceBusTypeResponse {
         Objects.equals(this.body, azureServiceBusTypeResponse.body) &&
         Objects.equals(this.tenantIdRef, azureServiceBusTypeResponse.tenantIdRef) &&
         Objects.equals(this.clientIdRef, azureServiceBusTypeResponse.clientIdRef) &&
-        Objects.equals(this.clientSecretRef, azureServiceBusTypeResponse.clientSecretRef);
+        Objects.equals(this.clientSecretRef, azureServiceBusTypeResponse.clientSecretRef) &&
+        Objects.equals(this.applicationProperties, azureServiceBusTypeResponse.applicationProperties);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -298,7 +334,7 @@ public class AzureServiceBusTypeResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, namespaceRef, queueNameRef, body, tenantIdRef, clientIdRef, clientSecretRef);
+    return Objects.hash(type, namespaceRef, queueNameRef, body, tenantIdRef, clientIdRef, clientSecretRef, applicationProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -319,6 +355,7 @@ public class AzureServiceBusTypeResponse {
     sb.append("    tenantIdRef: ").append(toIndentedString(tenantIdRef)).append("\n");
     sb.append("    clientIdRef: ").append(toIndentedString(clientIdRef)).append("\n");
     sb.append("    clientSecretRef: ").append(toIndentedString(clientSecretRef)).append("\n");
+    sb.append("    applicationProperties: ").append(toIndentedString(applicationProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -348,6 +385,7 @@ public class AzureServiceBusTypeResponse {
     openapiFields.add("tenantIdRef");
     openapiFields.add("clientIdRef");
     openapiFields.add("clientSecretRef");
+    openapiFields.add("applicationProperties");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

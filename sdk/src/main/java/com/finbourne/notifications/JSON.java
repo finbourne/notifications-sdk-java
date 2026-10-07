@@ -97,6 +97,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsNotificationTypeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsPrincipalAuthNotificationType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AmazonSqsPrincipalAuthNotificationTypeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ApiEndpoint.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.Attempt.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AttemptStatus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.AzureServiceBusNotificationType.CustomTypeAdapterFactory());
@@ -128,6 +129,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ResourceListOfEventTypeSchema.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ResourceListOfNotification.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ResourceListOfSubscription.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.ServiceApiEndpoints.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.SmsNotificationType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.SmsNotificationTypeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.notifications.model.Subscription.CustomTypeAdapterFactory());
